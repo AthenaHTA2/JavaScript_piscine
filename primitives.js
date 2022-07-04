@@ -1,12 +1,12 @@
 {
-    const STR = "Arabella";
+    const str = "Arabella";
 }
 {
-    const NUM = 2;
+    const num = 2;
 }
 {
-    const BOOL = true;
+    const bool = true;
 }
 {
-    const UNDEFINED = undefined;
+    const undef = undefined;
 }
