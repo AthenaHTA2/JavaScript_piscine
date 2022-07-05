@@ -1,5 +1,5 @@
 const escapeStr = '\'`\\\\/\""\'';
-const arr = [2, '2'];
+const arr = [4, '2'];
 const obj = {
     'str': 'string',
     'num': 1,
@@ -15,6 +15,9 @@ const nested = {
     }
 };
 
-object.freeze(nested);
-object.freeze(arr);
-object.freeze(obj);
+let a = nested.arr;
+let b = nested.obj;
+
+Object.freeze(nested);
+Object.freeze(a);
+Object.freeze(b);
