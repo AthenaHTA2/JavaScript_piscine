@@ -8,10 +8,13 @@ function abs(n){
 };
 
 function isPositive(n){
-    if (n - n === 0){
-        return true;
+    if (n ===0){
+        return false;
+    }
+    else if (n * -1 > 0){
+        return false;
     }
     else {
-        return false;
+        return true;
     }
 };
