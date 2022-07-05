@@ -7,6 +7,7 @@ function last(a){
 };
 
 function kiss(a){
-    let b = [];
-    return b[last[a], a[0]];
+let arr = [a[a.length-1], a[0]];
+console.log(arr)
+    return arr
 };
