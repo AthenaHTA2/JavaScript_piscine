@@ -1,16 +1,12 @@
-var person = {
-    'age': 100,
-    'country': "IT"
-};
+let clone1 = Object.assign({}, person);
+Object.freeze(clone1);
+let clone2 = Object.assign({}, person);
+Object.freeze(clone2);
+let samePerson = Object.assign(person);
+person.age = (person.age + 1);
+person.country = "FR";
 
-var samePerson = person;
 
-const clone1 = person;
-
-const clone2 = person;
-
-person[age] = person[age] + 1;
-person[country] = "FR";
 
 
 
