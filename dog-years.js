@@ -10,6 +10,6 @@ function dogYears(planet, seconds){
         'neptune': 164.79132,
       };
       let dogSeconds = seconds/31557600
-      let dogYears = ((7*dogSeconds)/parseFloat(earthYears[planet]));
+      let dogYears = parseFloat((7*dogSeconds)/(earthYears[planet]));
       return Number(dogYears.toFixed(2));
 };
