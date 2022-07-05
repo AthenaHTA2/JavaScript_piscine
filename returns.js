@@ -1,4 +1,4 @@
-function returns(a){
+function id(a){
     return a;
 };
 
