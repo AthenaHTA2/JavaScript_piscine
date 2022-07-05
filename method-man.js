@@ -4,7 +4,7 @@ function words(a){
 //const words = (i) => i.split(" ") example of shorter code
 
 function sentence(b){
-    return b.join();
+    return b.join(" ");
 };
 
 function yell(c){
