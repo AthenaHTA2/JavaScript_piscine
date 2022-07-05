@@ -1,4 +1,4 @@
-function sign(a){
+/*function sign(a){
     if (a < 0){
         return -1;
     }
@@ -12,5 +12,11 @@ function sameSign(a, b){
     if ((a*b)>0){
         return true;
     }
-    return false;
-};
+    else if ((a*b)===0){
+        return true;
+    }
+    else return false;
+};*/
+
+const sign = (i) => (i === 0) ? 0 : (i > 0) ? 1 : -1
+const sameSign = (i, j) =>  (sign(i) === sign(j)) ? true : false
