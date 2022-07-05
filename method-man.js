@@ -15,5 +15,5 @@ function whisper(d){
     return "*"+d.toLowerCase()+"*";
 };
 
-const capitalize = (e) => e.charAt(0).toUpperCase() + e.slice(1).toLower()
+const capitalize = (e) => e.charAt(0).toUpperCase() + e.slice(1).toLowerCase()
 
