@@ -1,6 +1,7 @@
+
 function get(a){
-    let key = sourceObject[a];
-return sourcrObject[key];
+    let value = sourceObject[a];
+return value;
 }
 
 function set(a, b){
