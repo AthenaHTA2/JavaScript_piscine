@@ -106,8 +106,6 @@ function ceil(a) {
   return a - remainder + 1;
 }
 
-console.log(floor(3.4));
-
 /*function by Quac
 /*function modulo(a, b) {
   let A = a;
