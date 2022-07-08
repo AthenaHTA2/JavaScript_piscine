@@ -1,8 +1,12 @@
 function repeat(a, b) {
-  let text = a;
-  let count = 0;
-  while (count < b) {
-    text = text + text;
+  let text = "";
+  let count = 1;
+  while (count <= b) {
+    text = text + a;
+    count++;
   }
   return text;
 }
+//console.log(repeat("a", 3));
+
+//node test.mjs ../../../piscine-js/ repeat
