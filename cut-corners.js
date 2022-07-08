@@ -58,7 +58,8 @@ function round(a) {
   if (a < 0) {
     if (remainder <= -0.5) {
       return a - remainder - 1;
-    } else {
+    }
+    if (remainder > -0.5) {
       return a - remainder;
     }
   }
@@ -68,9 +69,8 @@ function round(a) {
   }
   if (remainder <= 0.49) {
     return a - remainder;
-  } else {
-    return a - remainder + 1;
   }
+  return a - remainder + 1;
 }
 
 //This is the task 2
@@ -88,10 +88,18 @@ function floor(a) {
 //This is task 3:
 
 function trunc(a) {
-  let remainder = modulo(a);
   if (a == 0) {
     return 0;
   }
+  //if a > 68719476735
+  //a = 68719476735 + random number
+  //let a = a - 68719476735
+  if (a > 68719476735) {
+    a = a - 68719476735;
+    let remainder = modulo(a); //run the random number into
+    return a - remainder + 68719476735;
+  }
+  let remainder = modulo(a);
   return a - remainder;
 }
 
@@ -105,33 +113,4 @@ function ceil(a) {
   }
   return a - remainder + 1;
 }
-
-/*function by Quac
-/*function modulo(a, b) {
-  let A = a;
-  let B = b;
-  if (a < 0 || b < 0) {
-    A = sign(a); //if -a, int to positive
-    B = sign(b); //if -b, int to positive
-  }
-  while (A > B) {
-    A -= B;
-    A = A - B; //122-23-23-23-23-23-23-23-23-23 A > B
-  }
-  if (a < 0 && b < 0) {
-    //a = -122, b = -23
-    return -A;
-  }
-  if (a > 0 && b > 0) {
-    // a= 122, b = 23
-    return A;
-  }
-  if (a < 0 && b > 0) {
-    //a= -122, b= 23
-    return -A;
-  }
-  if (a > 0 && b < 0) {
-    //a =122, b=-23
-    return A;
-  }
-}*/
+//console.log(trunc(68719476735));
