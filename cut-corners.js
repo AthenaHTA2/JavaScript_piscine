@@ -49,6 +49,7 @@ function modulo(a, b = 1) {
   return result;
 }
 
+//This is the task 1
 function round(a) {
   let remainder = modulo(a);
   if (a == 0) {
@@ -72,6 +73,7 @@ function round(a) {
   }
 }
 
+//This is the task 2
 function floor(a) {
   let remainder = modulo(a);
   if (a == 0) {
@@ -81,6 +83,27 @@ function floor(a) {
     return a - remainder - 1;
   }
   return a - remainder;
+}
+
+//This is task 3:
+
+function trunc(a) {
+  let remainder = modulo(a);
+  if (a == 0) {
+    return 0;
+  }
+  return a - remainder;
+}
+
+function ceil(a) {
+  let remainder = modulo(a);
+  if (a == 0) {
+    return 0;
+  }
+  if (a < 0) {
+    return a - remainder;
+  }
+  return a - remainder + 1;
 }
 
 console.log(floor(3.4));
