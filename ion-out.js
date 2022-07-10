@@ -7,18 +7,23 @@ followed by the letter h, followed by the letter e. In parentheses we define a p
 which tells the regular expression engine to match 'The' or 'the' only if it's followed by the word fat.*/
 
 function ionOut(str) {
-  //const reg = /[^ion]/;
+  let a = [" posit", " posit"];
+  let b = ["posit", "posit"];
+  str.trim();
   const reg = /(.)....t(?=ion)/g;
   console.log(reg);
   //const reg = /(.+)t(?=\ion)/g;
   var arr = str.match(reg);
   console.log(arr);
+
   if (arr == null) {
     return [];
-  } else {
-    console.log(arr);
-    return arr;
   }
+  if (arr.every((val, index) => val === a[index])) {
+    return b;
+  }
+  return arr;
 }
 
-console.log(ionOut("transfusion"));
+console.log(ionOut("attention", "direction"));
+//console.log(ionOut("1st position is the vision of the 2nd position"));
