@@ -8,8 +8,17 @@ which tells the regular expression engine to match 'The' or 'the' only if it's f
 
 function ionOut(str) {
   //const reg = /[^ion]/;
-  const reg = /(.+).t(?=ion)/g;
+  const reg = /(.)....t(?=ion)/g;
+  console.log(reg);
   //const reg = /(.+)t(?=\ion)/g;
   var arr = str.match(reg);
-  return arr;
+  console.log(arr);
+  if (arr == null) {
+    return [];
+  } else {
+    console.log(arr);
+    return arr;
+  }
 }
+
+console.log(ionOut("transfusion"));
