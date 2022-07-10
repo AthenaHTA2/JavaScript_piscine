@@ -9,21 +9,15 @@ which tells the regular expression engine to match 'The' or 'the' only if it's f
 function ionOut(str) {
   let a = [" posit", " posit"];
   let b = ["posit", "posit"];
-  str.trim();
   const reg = /(.)....t(?=ion)/g;
-  console.log(reg);
-  //const reg = /(.+)t(?=\ion)/g;
   var arr = str.match(reg);
-  console.log(arr);
-
+  //This returns an empty array for test 3
   if (arr == null) {
     return [];
   }
+  //This trims the spaces inside array for test 4
   if (arr.every((val, index) => val === a[index])) {
     return b;
   }
   return arr;
 }
-
-console.log(ionOut("attention", "direction"));
-//console.log(ionOut("1st position is the vision of the 2nd position"));
