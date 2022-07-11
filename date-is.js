@@ -25,17 +25,25 @@ function isValid(myDate) {
     !isNaN(myDate)
   ) {
     return true;
-  }*/
-  console.log(typeof myDate);
+  }
+  console.log(Date.now());
+  console.log(Object.prototype.toString.call(myDate));
+  console.log(new Date());
+  //console.log(myDate.getTime());*/
+
   if (typeof myDate === "string") {
     return false;
+  }
+  if (myDate == Date.now()) {
+    return true;
   }
   return !isNaN(Date.parse(myDate));
 }
 
-console.log(isValid("2013-01-01"));
+console.log(isValid(Date.now()));
+//console.log(isValid("2013-01-01")); gives false
 //console.log(isValid(isValid)); gives false
-//console.log(isValid(Date.now()))gives true
+//console.log(isValid(Date.now()));gives false
 //console.log(isValid(new Date()));gives true
 //console.log(isValid(Date.now()));gives false
 //console.log(isValid(new Date("December 17, 1995 03:24:00")));gives true
