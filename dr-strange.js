@@ -124,6 +124,14 @@ function addWeek(d) {
   return wkDay;
 }
 
+/*
+Solution by Quoc: function timeTravel(object = {date, hour, minute, second}){
+  return new Date(
+    object.date.setHours(object.hour, object.minute, object.second));
+  )
+}
+*/
+
 function timeTravel({ date, hour, minute, second }) {
   date.setHours(hour);
   date.setMinutes(minute);
