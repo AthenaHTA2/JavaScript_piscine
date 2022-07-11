@@ -6,7 +6,9 @@ For example, the regular expression (T|t)he(?=\sfat) means: match either a lower
 followed by the letter h, followed by the letter e. In parentheses we define a positive lookahead 
 which tells the regular expression engine to match 'The' or 'the' only if it's followed by the word fat.*/
 
+/* This is my solution. The solution belowby Quoc is much better.
 function ionOut(str) {
+
   let a = [" posit", " posit"];
   let b = ["posit", "posit"];
   const reg = /(.)....t(?=ion)/g;
@@ -17,7 +19,10 @@ function ionOut(str) {
   }
   //This trims the spaces inside array for test 4
   if (arr.every((val, index) => val === a[index])) {
-    return b;
-  }
-  return arr;
+    return b;*/
+
+/* solution by Quoc:*/
+function ionOut(str) {
+  str = str.match(/(\w)+t(?=\ion)/g) || [];
+  return str;
 }
