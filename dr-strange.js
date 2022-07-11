@@ -109,10 +109,10 @@ function addWeek(d) {
     //check if the whole number is even or odd, and assign prefix "second" to odd numbers
     if (Math.floor(diffDays / 7) % 2 != 0) {
       prefix = "second";
-      console.log(diffDays);
+      //console.log(diffDays);
       day = diffDays - 7 * Math.floor(diffDays / 7);
-      console.log(day);
-      console.log(diffDays - Math.floor(diffDays));
+      //console.log(day);
+      //console.log(diffDays - Math.floor(diffDays));
       wkDay = prefix + arrWkDays[day];
     } else {
       prefix = "";
@@ -122,6 +122,14 @@ function addWeek(d) {
   }
 
   return wkDay;
+}
+
+function timeTravel({ date, hour, minute, second }) {
+  date.setHours(hour);
+  date.setMinutes(minute);
+  date.setSeconds(second);
+
+  return date;
 }
 
 console.log(addWeek("1664-08-09"));
