@@ -21,11 +21,67 @@ information from Google:
   To get the current epoch time in seconds:
   Note that the 'getTime()' method returns the time in milliseconds.
   let newDateInSeconds = Math.floor(new Date().getTime() / 1000.0);
+
+Solution by Mohamed:
+
+function addWeek(date){
+
+  const dayNames = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+    "nextMonday",
+    "nextTuesday",
+    "nextWednesday",
+    "nextThursday",
+    "nnextSaturday",
+    "nextSunday",
+  ];
+const start = new Date("0001-01-01")
+const days = Math.round((date.getTime() - start.getTime())/(1000*60*60*24))
+return dayNames[days%14]
+
+
+
+
+}
+
+Solution by Quoc:
+
+function addWeek(date){
+  //long number from: https://www.epochconverter.com/
+
+  return newDays[Math.floor((date.getTime() + 621355968000000)/86400/1000)%14];
+
+}
+
+const newDays = [   
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+    "nextMonday",
+    "nextTuesday",
+    "nextWednesday",
+    "nextThursday",
+    "nextFriday",
+    "nextaturday",
+    "nextSunday",
+  ]
+
 */
 
 function addWeek(d) {
   let prefix = "";
   let wkDay = "";
+  let day = 0;
 
   var arrWkDays = [
     "Monday",
@@ -39,11 +95,12 @@ function addWeek(d) {
 
   //To set the new epoch to 0001-01-01:
   const myEpoch = new Date("0001-01-01");
+
   var milliSec_1 = myEpoch.getTime();
   var myDate = new Date(d);
   var milliSec_2 = myDate.getTime();
   var diffDays = (milliSec_2 - milliSec_1) / (1000 * 3600 * 24);
-  //console.log(diffDays);
+  console.log(diffDays);
 
   if (diffDays < 7) {
     prefix = "";
@@ -53,9 +110,13 @@ function addWeek(d) {
     if (Math.floor(diffDays / 7) % 2 != 0) {
       prefix = "second";
       console.log(diffDays);
-      let day = diffDays - 7 * Math.floor(diffDays / 7);
+      day = diffDays - 7 * Math.floor(diffDays / 7);
       console.log(day);
-      //console.log(diffDays - Math.floor(diffDays));
+      console.log(diffDays - Math.floor(diffDays));
+      wkDay = prefix + arrWkDays[day];
+    } else {
+      prefix = "";
+      day = diffDays - 7 * Math.floor(diffDays / 7);
       wkDay = prefix + arrWkDays[day];
     }
   }
@@ -63,4 +124,4 @@ function addWeek(d) {
   return wkDay;
 }
 
-console.log(addWeek("2025-08-11"));
+console.log(addWeek("1664-08-09"));
