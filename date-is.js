@@ -15,8 +15,30 @@ The isValid() function is used to check the getTime() method is equal to itself 
 */
 
 function isValid(myDate) {
-  var myDate_1 = new Date(myDate);
-  return Object.prototype.toString.call(myDate_1) === "[object Date]";
+  /*console.log(new Date());
+  console.log(Object.prototype.toString.call(myDate));
+  console.log("[object myDate]");
+  console.log(!isNaN(Date.parse(myDate)));
+  let test = Object.prototype.toString.call(myDate) instanceof Date;
+  if (
+    Object.prototype.toString.call(myDate) === "[object myDate]" &&
+    !isNaN(myDate)
+  ) {
+    return true;
+  }*/
+  console.log(typeof myDate);
+  if (typeof myDate === "string") {
+    return false;
+  }
+  return !isNaN(Date.parse(myDate));
 }
 
-console.log(isValid("1995-12-17T03:24:00"));
+console.log(isValid("2013-01-01"));
+//console.log(isValid(isValid)); gives false
+//console.log(isValid(Date.now()))gives true
+//console.log(isValid(new Date()));gives true
+//console.log(isValid(Date.now()));gives false
+//console.log(isValid(new Date("December 17, 1995 03:24:00")));gives true
+//console.log(isValid(new Date(new Date(1488370835081)))); gives true
+//console.log(isValid(new Date("1995-12-17T03:24:00"))); gives true
+//console.log(isValid(new Date("1995-12-17T03:24:00").getTime())); gives false
