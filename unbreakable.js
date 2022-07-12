@@ -29,7 +29,7 @@ function split(str, elem) {
   return arr;
 }
 
-/*function join(arr, elem) {
+function join(arr, elem) {
   let res = "";
   for (let i = 0; i < arr.length; i++) {
     // console.log(elem.length)
@@ -43,6 +43,3 @@ function split(str, elem) {
   res = res.slice(0, res.length - elem.length);
   return res;
 }
-*/
-
-//console.log(split("rrrr", "rr"));
