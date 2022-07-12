@@ -7,7 +7,6 @@ function chunk(arr, lengthInner) {
   let outer = [];
   let inner = [];
   let numInner = Math.ceil(arr.length / lengthInner);
-  // console.log(numInner);
   let count = 0;
   for (let i = 0; i < arr.length; i++) {
     if (count < numInner - 1) {
@@ -15,11 +14,12 @@ function chunk(arr, lengthInner) {
         inner.push(arr[j]);
       }
       outer[count] = inner;
-      i = i + lengthInner;
+      i = i + lengthInner - 1;
       count++;
     } else {
       //from index i till end of arr
       inner = arr.slice(i);
+      outer[count] = inner;
       i = arr.length - 1;
       count = numInner;
     }
@@ -28,4 +28,4 @@ function chunk(arr, lengthInner) {
   return outer;
 }
 
-console.log(chunk(["a", "b", "c", "d"], 2));
+console.log(chunk(["a", "b", "c", "d"], 3));
