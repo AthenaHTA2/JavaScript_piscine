@@ -24,8 +24,6 @@ function chunk(arr, lengthInner) {
       count = numInner;
     }
   }
-  console.log(outer);
+
   return outer;
 }
-
-console.log(chunk(["a", "b", "c", "d"], 3));
