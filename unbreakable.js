@@ -6,29 +6,43 @@
 */
 
 function split(str, elem) {
-    let arr = []
-    for (let i = 0; i < str.length - elem.length+1; i++) {
-        if (str.slice(i,i+elem.length) == elem) {
-            arr.push(str.slice(0, i))
-            str = str.slice(i + elem.length)
-            i = 0
-        }
+  let arr = [];
+  let step = 1;
+  if (elem.length > 1) {
+    step = elem.length - 1;
+  }
+  for (let i = 0; i <= str.length - elem.length; i++) {
+    if (str.slice(i, i + elem.length) == elem) {
+      if (str.length == elem.length) {
+        arr.push(str.slice(0, i));
+        return arr;
+      } else {
+        arr.push(str.slice(0, i));
+        str = str.slice(i + step);
+        console.log(str);
+        i = 0;
+      }
     }
-    arr.push(str)
-    return arr
+    i = i - step;
+  }
+  arr.push(str);
+  return arr;
 }
 
-function join(arr, elem) {
-    let res = ''
-    for (let i = 0; i < arr.length; i++) {
-        // console.log(elem.length)
-        if (elem.length == 0) {
-            res += arr[i]
-        } else {
-            res += arr[i] + elem
-        }
+/*function join(arr, elem) {
+  let res = "";
+  for (let i = 0; i < arr.length; i++) {
+    // console.log(elem.length)
+    if (elem.length == 0) {
+      res += arr[i];
+    } else {
+      res += arr[i] + elem;
     }
+  }
 
-    res = res.slice(0, res.length - elem.length)
-    return res
+  res = res.slice(0, res.length - elem.length);
+  return res;
 }
+*/
+
+//console.log(split("rrrr", "rr"));
