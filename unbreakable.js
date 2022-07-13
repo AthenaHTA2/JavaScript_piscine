@@ -23,7 +23,7 @@ function split(str, elem) {
         arr.push(app);
         app = "";
 
-        if (i < str.length - 1 - step) {
+        if (i <= str.length - 1 - step) {
           i = i + step - 1;
         } else {
           arr.push(app);
