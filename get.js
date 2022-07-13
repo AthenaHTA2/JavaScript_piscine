@@ -27,14 +27,44 @@ const person = {
     return this.firstName + " " + this.lastName;
   }
 };
+
+********** Object Methlds ***********
+
+    let keys = Object.keys(object_name) //will return an array of keys;
+    console.log('Keys ', keys); will print the keys;
+   
+    let vals = Object.values(object_name)// will return an array of all values;
+     console.log('Vals', vals);
+
+  let entries = Object.entries(object_name);//will return an array of all key-value pairs.
+  console.log('Entries ', entries);
+
+  the above methods will turn an 'object' into an iterable array, so that
+  we can apply methods such as: foreach(), filter(), map(), reduce().
 */
 
-function get(src, path) {
-  if (path.search(".") != -1) {
-    return { key: "value" }.key;
+const get = (src, path) => {
+  if (src == null) {
+    // null or undefined
+    return src;
   }
-  
-  return src[path];
-}
+  const parts = path.split(".");
+  for (let i = 0; i < parts.length; ++i) {
+    if (src == null) {
+      // null or undefined
+      return undefined;
+    }
+    const key = parts[i];
+    src = src[key];
+  }
+  return src;
+};
 
-console.log(get({ key: "value" }, "nx"));
+// //Test cases:
+// console.log(get({ key: "value" }, "key")); //=== 'value';
+// console.log(get({ nested: { key: "value" } }, "nested.key")); //=== 'value');
+// console.log(get({ key: "value" }, "nx")); //=== undefined);
+// console.log(get({ nested: { key: "value" } }, "nested.nx")); // === undefined);
+// console.log(get({ nested: { key: "value" } }, "nx.nx")); // === undefined);
+// console.log(get({ a: [{ b: t }] }, "a.0.b")); //=== t));
+// console.log(get({ a: [{ b: t }] }, "a.0.b.toString")); // === t.toString);
