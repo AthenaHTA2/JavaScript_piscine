@@ -13,12 +13,12 @@ function split(str, elem) {
   if (str.length == 0) {
     arr.push(str);
   } else if (elem.length == 0) {
-    for (let i = 0; i < str.length; i++) {
+    for (let i = 0; i < str.length - step; i++) {
       arr.push(str[i]);
     }
   } else {
     //console.log(step);
-    for (let i = 0; i <= str.length - step; i++) {
+    for (let i = 0; i <= str.length; i++) {
       if (str.slice(i, i + step) == elem) {
         arr.push(app);
         app = "";
@@ -32,8 +32,14 @@ function split(str, elem) {
         //return arr;
       } else {
         app = app + str[i];
+
         if (i == str.length - 1) {
-          arr.push(app);
+          console.log(str.slice(i - elem.length + 1));
+          if (str.slice(i - elem.length + 1) == elem) {
+            app = "";
+          } else {
+            arr.push(app);
+          }
         }
       }
     }
