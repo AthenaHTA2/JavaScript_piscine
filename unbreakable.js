@@ -43,3 +43,5 @@ function join(arr, elem) {
   res = res.slice(0, res.length - elem.length);
   return res;
 }
+
+//console.log(split('rrrr', 'rr'))
