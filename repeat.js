@@ -9,4 +9,5 @@ function repeat(a, b) {
 }
 //console.log(repeat("a", 3));
 
-//node test.mjs ../../../piscine-js/ repeat
+//cd public/js/tests
+//node test.mjs ../../../piscine-js/ repeat //to test exercises before submitting
