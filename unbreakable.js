@@ -11,23 +11,42 @@ function split(str, elem) {
   if (elem.length > 1) {
     step = elem.length - 1;
   }
-  for (let i = 0; i <= str.length - elem.length; i++) {
+  for (let i = 0; i <= str.length - step; i++) {
     if (str.slice(i, i + elem.length) == elem) {
-      if (str.length == elem.length) {
-        arr.push(str.slice(0, i));
+      // console.log(i);
+      // console.log(str.slice(i));
+      // console.log(str.slice(i, i + elem.length));
+      if (str.slice(i).length == elem.length) {
+        //console.log(str.slice(i).length);
+        if (str.slice(0, i) == elem) {
+          arr.push("");
+        } else {
+          arr.push(str.slice(0, i));
+        }
         return arr;
       } else {
-        arr.push(str.slice(0, i));
-        str = str.slice(i + step);
-        console.log(str);
-        i = 0;
+        // console.log(str.slice(i).length);
+        // console.log(str.slice(0, i));
+        if (str.slice(0, i) == elem) {
+          arr.push("");
+        } else {
+          arr.push(str.slice(0, i));
+        }
+        // console.log(str.slice(0, i));
+        //str = str.slice(i + step);
+        //console.log(str);
+        // i = i + step;
       }
     }
-    i = i - step;
+    //i = i - step;
   }
+
   arr.push(str);
+  console.log(arr);
   return arr;
 }
+
+console.log(split("rrrr", "rr"));
 
 function join(arr, elem) {
   let res = "";
@@ -43,5 +62,3 @@ function join(arr, elem) {
   res = res.slice(0, res.length - elem.length);
   return res;
 }
-
-//console.log(split('rrrr', 'rr'))
