@@ -7,46 +7,68 @@
 
 function split(str, elem) {
   let arr = [];
-  let step = 1;
-  if (elem.length > 1) {
-    step = elem.length - 1;
-  }
-  for (let i = 0; i <= str.length - step; i++) {
-    if (str.slice(i, i + elem.length) == elem) {
-      // console.log(i);
-      // console.log(str.slice(i));
-      // console.log(str.slice(i, i + elem.length));
-      if (str.slice(i).length == elem.length) {
-        //console.log(str.slice(i).length);
-        if (str.slice(0, i) == elem) {
-          arr.push("");
+  let step = elem.length;
+  let app = "";
+
+  if (str.length == 0) {
+    arr.push(str);
+  } else if (elem.length == 0) {
+    for (let i = 0; i < str.length; i++) {
+      arr.push(str[i]);
+    }
+  } else {
+    //console.log(step);
+    for (let i = 0; i <= str.length - step; i++) {
+      if (str.slice(i, i + step) == elem) {
+        arr.push(app);
+        app = "";
+
+        if (i < str.length - 1 - step) {
+          i = i + step - 1;
         } else {
-          arr.push(str.slice(0, i));
+          arr.push(app);
         }
-        return arr;
+
+        //return arr;
       } else {
-        // console.log(str.slice(i).length);
-        // console.log(str.slice(0, i));
-        if (str.slice(0, i) == elem) {
-          arr.push("");
-        } else {
-          arr.push(str.slice(0, i));
+        app = app + str[i];
+        if (i == str.length - 1) {
+          arr.push(app);
         }
-        // console.log(str.slice(0, i));
-        //str = str.slice(i + step);
-        //console.log(str);
-        // i = i + step;
       }
     }
-    //i = i - step;
   }
-
-  arr.push(str);
-  console.log(arr);
   return arr;
 }
 
+//arr.push(str);
+//console.log(arr);
+
+console.log("");
+console.log("Test 1: ['a', 'b', 'c']");
+console.log(split("a b c", " "));
+console.log("");
+console.log("Test 2: ['ggg', 'ddd', 'b']");
+console.log(split("ggg - ddd - b", " - "));
+console.log("");
+console.log("Test 3: ['ee', 'ff', 'g', '']");
+console.log(split("ee,ff,g,", ","));
+console.log("");
+console.log("Test 4: ['Riad']");
+console.log(split("Riad", " "));
+console.log("");
+console.log("Test 5: ['', '', '']");
 console.log(split("rrrr", "rr"));
+console.log("");
+console.log("Test 6: ['', 'i', '']");
+console.log(split("rrirr", "rr"));
+console.log("");
+console.log("Test 7: ['R', 'i', 'a', 'd'])");
+console.log(split("Riad", ""));
+console.log("");
+console.log("Test 8:  ['']");
+console.log(split("", "Riad"));
+console.log("");
 
 function join(arr, elem) {
   let res = "";
