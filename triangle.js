@@ -27,18 +27,20 @@ Falsey values in JavaScript:
 function triangle(str, nb) {
   let out = "";
   for (var i = 0; i < nb; i++) {
-    console.log("i: ", i);
+    //console.log("i: ", i);
     for (var j = 0; j <= i; j++) {
-      console.log("j: ", j);
-      out += str;
-    }
-    console.log(out);
-    out += "\n";
-  }
+      //console.log("j: ", j);
 
-  // console.log(i);
-  // console.log(j);
-  //console.log(out);
+      if (j === i && j != nb - 1) {
+        out = out + str + "\n";
+      } else {
+        out = out + str;
+      }
+    }
+  }
+  console.log(out);
+  // console.log("\n");
+  return out;
 }
 
 console.log(triangle(triangle("a", 5)));
