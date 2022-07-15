@@ -21,33 +21,55 @@
 //   return out;
 //  }
 
-//This is my solution #2:
-
-function pyramid(str, nb) {
-  let out = "";
-  //vertical axis
-  for (let i = 0; i < nb; i++) {
-    //horiz axis
-    for (let j = 0; j <= nb * 2 - 1; j++) {
-      if (j < nb - i) {
-        out += " ";
-      } else if (j > nb + i) {
-        out += "";
-      } else {
-        out += str + "";
-      }
-      if (j == nb * 2 - 1 && i != nb - 1) {
-        out += "\n";
-      }
+//The best solution, by geniour student:
+const pyramid = (x, n) => {
+  //create a string to store the result
+  let res = "";
+  //create a loop that goes from 0 up to n
+  for (let i = 1; i <= n; i++) {
+    let noOfChar = 2 * i - 1;
+    let noOfSpaces = (2 * n - 1 - noOfChar) * x.length;
+    noOfSpaces /= 2;
+    //create a nested for loop that adds the number
+    for (let j = 0; j < noOfSpaces; j++) {
+      res += " ";
+    }
+    //create another loop that adds the actual characters
+    for (let k = 0; k < noOfChar; k++) {
+      res += x;
+    }
+    if (i != n) {
+      res += "\n";
     }
   }
-  return out;
-}
+  return res;
+};
+
+//This is my solution #2:
+
+// function pyramid(str, nb) {
+//   let out = "";
+//   //vertical axis
+//   for (let i = 0; i < nb; i++) {
+//     //horiz axis
+//     for (let j = 0; j <= nb * 2 - 1; j++) {
+//       if (j < nb - i || j > nb + i) {
+//         out += " ";
+//       } else {
+//         out += str + "";
+//       }
+//       if (j == nb * 2 - 1 && i != nb - 1) {
+//         out += "\n";
+//       }
+//     }
+//   }
+//   return out;
+// }
 
 //console.log(pyramid("#", 5));
-//console.log(pyramid("{}", 7));
+console.log(pyramid("{}", 5));
 //console.log(pyramid("#", 10));
-console.log(pyramid("+", 40));
+//console.log(pyramid("<^>", 13));
 
 // const pyramid = (str, nb) => {
 //   const mid = Math.floor((2 * nb - 1) / 2);
