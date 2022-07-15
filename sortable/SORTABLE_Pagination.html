@@ -51,7 +51,7 @@ This line accounts for the size of the json:
       <br /><br />
       <left><h4>Number of Superheroes per page</h4></left>
       <div class="dropdownHeroes">
-        <button onclick="myFunction()" class="nrOfSuperheroes">
+        <button onclick="myFunction()" class="btnNrHeroes">
           Superheroes number
         </button>
         <div id="heroesDropdown" class="dropdown-number">
@@ -99,6 +99,26 @@ This line accounts for the size of the json:
   //   { adName: "AdName 9" },
   //   { adName: "AdName 10" },
   // ]; // Can be obtained from another source, such as your objJson variable
+
+  /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  // Close the dropdown if the user clicks outside of it
+  window.onclick = function (event) {
+    if (!event.target.matches(".btnNrHeroes")) {
+      var dropdowns = document.getElementsByClassName("dropdown-number");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains("show")) {
+          openDropdown.classList.remove("show");
+        }
+      }
+    }
+  };
 
   function prevPage() {
     if (current_page > 1) {
