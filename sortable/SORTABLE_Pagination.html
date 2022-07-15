@@ -1,0 +1,158 @@
+<!--
+
+   the data file: all.json
+
+  From the Intra website:
+
+Display
+Not all the information is valuable at a glance, so we will only show some of the fields in a <table> element. The necessary data will be:
+
+Icon (.images.xs, should be displayed as images and not as a string)
+Name (.name)
+Full Name (.biography.fullName)
+Powerstats (each entry of .powerstats)
+Race (.appearance.race)
+Gender (.appearance.gender)
+Height (.appearance.height)
+Weight (.appearance.weight)
+Place Of Birth (.biography.placeOfBirth)
+Alignement (.biography.alignment)
+
+The information must be displayed in multiple pages. Use a <select> input to chose the page size from 10, 20,50, 100 or all results.
+
+The default page size selected option must be 20.
+
+
+Below code is from Github: http://jsfiddle.net/Lzp0dw83/1/
+
+This line accounts for the size of the json:
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Brawler"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Superheroes</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <center>
+      <h2 class="name"><strong>Superheroes</strong></h2>
+      <br /><br />
+      <left><h4>Number of Superheroes per page</h4></left>
+      <div class="dropdownHeroes">
+        <button onclick="myFunction()" class="nrOfSuperheroes">
+          Superheroes number
+        </button>
+        <div id="heroesDropdown" class="dropdown-number">
+          <a href="#">10</a>
+          <a href="#">20</a>
+          <a href="#">50</a>
+          <a href="#">100</a>
+          <a href="#">all Superheroes</a>
+        </div>
+      </div>
+    </center>
+    <div id="listingTable"></div>
+    <a href="javascript:prevPage()" id="btn_prev">Prev</a>
+    <a href="javascript:nextPage()" id="btn_next">Next</a>
+    page: <span id="page"></span>
+    <script src="index.js"></script>
+  </body>
+</html>
+
+<script>
+  var current_page = 1;
+  var records_per_page = 10;
+
+  let objJson = {};
+  // This function is called only after the data has been fetched, and parsed.
+  const loadData = (heroes) => {
+    // console.log(heroes)
+    objJson = heroes;
+  };
+
+  // Request the file with fetch, the data will downloaded to your browser cache.
+  fetch("https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json")
+    .then((response) => response.json()) // parse the response from JSON
+    .then(loadData); // .then will call the `loadData` function with the JSON value.
+
+  // var objJson = [
+  //   { adName: "AdName 1" },
+  //   { adName: "AdName 2" },
+  //   { adName: "AdName 3" },
+  //   { adName: "AdName 4" },
+  //   { adName: "AdName 5" },
+  //   { adName: "AdName 6" },
+  //   { adName: "AdName 7" },
+  //   { adName: "AdName 8" },
+  //   { adName: "AdName 9" },
+  //   { adName: "AdName 10" },
+  // ]; // Can be obtained from another source, such as your objJson variable
+
+  function prevPage() {
+    if (current_page > 1) {
+      current_page--;
+      changePage(current_page);
+    }
+  }
+
+  function nextPage() {
+    if (current_page < numPages()) {
+      current_page++;
+      changePage(current_page);
+    }
+  }
+
+  function changePage(page) {
+    var btn_next = document.getElementById("btn_next");
+    var btn_prev = document.getElementById("btn_prev");
+    var listing_table = document.getElementById("listingTable");
+    var page_span = document.getElementById("page");
+
+    // Validate page
+    if (page < 1) page = 1;
+    if (page > numPages()) page = numPages();
+
+    listing_table.innerHTML = "";
+
+    for (
+      var i = (page - 1) * records_per_page;
+      i < page * records_per_page && i < objJson.length;
+      i++
+    ) {
+      listing_table.innerHTML += objJson[i].adName + "<br>";
+    }
+    page_span.innerHTML = page + "/" + numPages();
+
+    if (page == 1) {
+      btn_prev.style.visibility = "hidden";
+    } else {
+      btn_prev.style.visibility = "visible";
+    }
+
+    if (page == numPages()) {
+      btn_next.style.visibility = "hidden";
+    } else {
+      btn_next.style.visibility = "visible";
+    }
+  }
+
+  function numPages() {
+    return Math.ceil(objJson.length / records_per_page);
+  }
+
+  window.onload = function () {
+    changePage(1);
+  };
+</script>
