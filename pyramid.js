@@ -29,10 +29,12 @@ function pyramid(str, nb) {
   for (let i = 0; i < nb; i++) {
     //horiz axis
     for (let j = 0; j <= nb * 2 - 1; j++) {
-      if (j < nb - i || j > nb + i) {
+      if (j < nb - i) {
         out += " ";
+      } else if (j > nb + i) {
+        out += "";
       } else {
-        out += str +"";
+        out += str + "";
       }
       if (j == nb * 2 - 1 && i != nb - 1) {
         out += "\n";
