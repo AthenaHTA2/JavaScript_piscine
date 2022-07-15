@@ -22,25 +22,34 @@ This will open the browser and show your web page.
 3) Type 'export' in front of each function. The web site elements will not show unless you type, and export the empty formulas in the 'get-them-all.js' file.
 */
 export function getArchitects() {
-  document.getElementsByTagName("a.getArchitects");
-  document.getElementsByTagName("span");
+  //1st array: the architects, all corresponding to a <a> tag.
+  let arr1 = document.querySelectorAll("a");
+  //2nd array: all the non-architects.
+  let arr2 = document.querySelectorAll("span");
+  return [arr1, arr2];
 }
 
 export function getClassical() {
-  document.getElementsByTagName("a.getClassical");
-  document.getElementsByTagName("a.getElementsByClassName(baroque modern)");
+  //1st array: the architects belonging to the classical class.
+  let arr3 = document.querySelectorAll(".classical");
+  //2nd array: the non-classical architects.
+  let arr4 = document.querySelectorAll(".baroque, .modern");
+  return [arr3, arr4];
 }
 
 export function getActive() {
-  document.getElementsByTagName("a.getArchitects.getClassical.getActive");
-  document.getElementsByTagName(
-    "a.getArchitects.getClassical.getActive(false)"
-  );
+  //1st array: the classical architects who are active in their class.
+  let arr5 = document.querySelectorAll(".classical, .active");
+  //2nd array: the non-active classical architects.
+  let arr6 = document.querySelectorAll(".classical:not(.active)");
+  return [arr5, arr6];
 }
 
 export function getBonannoPisano() {
-  document.getElementById("BonannoPisano");
-  document.getElementsByTagName(
-    "a.getArchitects.getClassical.getActive:not(#BonannoPisano)"
-  );
+  //the HTML element of the architect you're looking for, whose id is BonannoPisano.
+  let pisano = document.querySelector("#BonannoPisano");
+  console.log(pisano)
+  //an array containing all the remaining HTML elements of active classical architects.
+  let other = document.querySelectorAll("active.classical:not(#BonannoPisano");
+  return [pisano, other]
 }
