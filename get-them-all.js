@@ -48,8 +48,8 @@ export function getActive() {
 export function getBonannoPisano() {
   //the HTML element of the architect you're looking for, whose id is BonannoPisano.
   let pisano = document.querySelector("#BonannoPisano");
-  console.log(pisano)
+  console.log(pisano);
   //an array containing all the remaining HTML elements of active classical architects.
-  let other = document.querySelectorAll("active.classical:not(#BonannoPisano");
-  return [pisano, other]
+  let other = document.querySelectorAll("a:not(#BonannoPisano");
+  return [pisano, other];
 }
