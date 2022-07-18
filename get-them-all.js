@@ -17,8 +17,8 @@ Instead, you simply type: code + <name of HTML file> + <enter>
 This will open the browser and show your web page.
 
 %%%%%%%%%%% Steps to begin DOM exercise #1: %%%%%%%%%%%%%%%
-1) make a DOM folder and save the 'get-them-all.HTML', the 'get-them-all.data.js', and the 'get-them-all.js' files in the folder.
-2) in the .js file, type four empty functions: getArchitects, getClassical, getActive, getBonannoPisano.
+1) [Optional: make a DOM folder and]save the 'get-them-all.HTML', the 'get-them-all.data.js', and the 'get-them-all.js' files in the folder.
+2) In the .js file, type four empty functions: getArchitects, getClassical, getActive, getBonannoPisano.
 3) Type 'export' in front of each function. The web site elements will not show unless you type, and export the empty formulas in the 'get-them-all.js' file.
 */
 export function getArchitects() {
@@ -50,6 +50,6 @@ export function getBonannoPisano() {
   let pisano = document.querySelector("#BonannoPisano");
   console.log(pisano);
   //an array containing all the remaining HTML elements of active classical architects.
-  let other = document.querySelectorAll("a:not(#BonannoPisano");
+  let other = document.querySelectorAll("a:not(#BonannoPisano)");
   return [pisano, other];
 }
