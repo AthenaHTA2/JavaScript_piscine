@@ -1,4 +1,7 @@
-/*- To create a simple live server, in VSC type either:
+/*VSC terminal command to remove id/pw requests when pushing to gitea:
+  config --global credential.helper store
+
+- To create a simple live server, in VSC type either:
 python3 -m http.server   or: &>/dev/null python3 -m http.server &
 
 - Next type: xdg-open 'http://localhost:8000/'
