@@ -14,15 +14,16 @@ export function generateLetters() {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let letter;
   let elem = 0;
+  let fontSize = 10;
   while (elem < 120) {
     let myDiv = document.createElement("div"); //generate a 'div' element
     myDiv.id = `letter_${elem}`; // and give it an id
     letter = alphabet[Math.floor(Math.random() * alphabet.length)]; //generate a random letter
     myDiv.textContent = letter;
-    myDiv.style.fontSize = 11 + elem; //increase  elements' font size from 11 to 130
-    if (elem <= 39) {
+    myDiv.style.fontSize += 1; //increase  elements' font size from 11 to 130
+    if (`${elem}` <= 39) {
       myDiv.style.fontWeight = 300; //first third of sample
-    } else if (elem <= 79) {
+    } else if (`${elem}` <= 79) {
       myDiv.style.fontWeight = 400; // second third of sample
     } else {
       myDiv.style.fontWeight = 600; // last third of sample
