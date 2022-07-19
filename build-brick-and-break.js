@@ -102,7 +102,7 @@ export function build(n) {
     document.body.append(newDiv);
 
     if (x % 3 == 2) {
-      newDiv.setAttribute("foundation", "true");
+      newDiv.dataset.foundation = "true";
     }
     // } else {
     //   newDiv.setAttribute("notFoundation", "true");
@@ -155,13 +155,13 @@ export function destroy() {
 export function repair(...ids) {
   ids.forEach(function (brick) {
     let repairBricks = document.getElementById(brick);
-    if (repairBricks != null) {
-      if (repairBricks.hasAttribute("foundation")) {
-        repairBricks.dataset.repaired = "in progress";
-      } else {
-        repairBricks.dataset.repaired = "true";
-      }
+    //if (repairBricks != null) {
+    if (repairBricks.dataset.repaired != null) {
+      repairBricks.dataset.repaired = "in progress";
+    } else {
+      repairBricks.dataset.repaired = "true";
     }
+    //}
   });
   // for (let i = 1; i <= ids.length; i++) {
   //   let brick = document.getElementById(`brick-${i}`);
