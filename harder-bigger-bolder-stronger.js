@@ -14,13 +14,13 @@ export function generateLetters() {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let letter;
   let elem = 0;
-  let fontSize = 10;
+  let fontSize = 11;
   while (elem < 120) {
     let myDiv = document.createElement("div"); //generate a 'div' element
     myDiv.id = `letter_${elem}`; // and give it an id
     letter = alphabet[Math.floor(Math.random() * alphabet.length)]; //generate a random letter
     myDiv.textContent = letter;
-    myDiv.style.fontSize += 1; //increase  elements' font size from 11 to 130
+    myDiv.style.fontSize = `${fontSize}px`; //increase  elements' font size from 11 to 130
     if (`${elem}` <= 39) {
       myDiv.style.fontWeight = 300; //first third of sample
     } else if (`${elem}` <= 79) {
@@ -30,5 +30,6 @@ export function generateLetters() {
     }
     document.body.appendChild(myDiv);
     elem++;
+    fontSize++;
   }
 }
