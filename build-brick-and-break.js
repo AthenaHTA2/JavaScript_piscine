@@ -87,9 +87,11 @@ let expandingList = document.createElement('ul', { is : 'expanding-list' })
 
 // let timerId = setInterval(function () {}, 100);
 //logic from :https://stackoverflow.com/questions/3583724/how-do-i-add-a-delay-in-a-javascript-loop
+
 let x = 1;
 
 let numBricks;
+
 export function build(n) {
   numBricks = n;
   setTimeout(function () {
@@ -102,6 +104,9 @@ export function build(n) {
     if (x % 3 == 2) {
       newDiv.setAttribute("foundation", "true");
     }
+    // } else {
+    //   newDiv.setAttribute("notFoundation", "true");
+    // }
     x++;
     if (x <= n) {
       build(n);
@@ -148,14 +153,23 @@ export function destroy() {
 }
 
 export function repair(...ids) {
-  do {
-    document.getElementById(`brick-${i}`);
-    if (Element.getAttribute("foundation")) {
-      Element.setAttribute("in progress", "true");
-    } else {
-      Element.setAttribute("repaired", "true");
+  ids.forEach(function (brick) {
+    let repairBricks = document.getElementById(brick);
+    if (repairBricks != null) {
+      if (repairBricks.hasAttribute("foundation")) {
+        repairBricks.dataset.repaired = "in progress";
+      } else {
+        repairBricks.dataset.repaired = "true";
+      }
     }
-  } while (i <= ids);
+  });
+  // for (let i = 1; i <= ids.length; i++) {
+  //   let brick = document.getElementById(`brick-${i}`);
+  //   brick.hasAttribute("foundation");
+
+  //   brick.hasAttribute("notFoundation");
+
+  // }
 }
 
 //repair(ids);
