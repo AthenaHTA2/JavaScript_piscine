@@ -104,48 +104,15 @@ export function build(n) {
     if (x % 3 == 2) {
       newDiv.dataset.foundation = "true";
     }
-    // } else {
-    //   newDiv.setAttribute("notFoundation", "true");
-    // }
     x++;
     if (x <= n) {
       build(n);
     }
   }, 100);
-
-  //   for (let i = 1; i <= n; i++) {
-  //     for (let j = 1; j <= 3; j++) {
-  //       // create a new div element
-  //       let newDiv = document.createElement("div");
-  //       // and give it an id
-  //       newDiv.id = `brick-${i}`;
-  //       document.body.append(newDiv);
-
-  //       if (j === 2) {
-  //         newDiv.setAttribute("foundation", "true");
-  //       }
-
-  //       //var currentDiv = document.getElementById("div1");
-  //       //document.body.append(newDiv);
-
-  //       // document.body.insertBefore(newDiv, currentDiv);
-
-  //       // }
-  //     }
-
-  //     //clearInterval();
-
-  //     // add the newly created element and its content into the DOM
-  //     // const currentDiv = document.getElementById("div1");
-  //     // document.body.insertBefore(newDiv, currentDiv);
-  //   }
-
-  // if (i == n) {
-  //   clearInterval(timerId);
-  // }
 }
 
 build();
+
 export function destroy() {
   const element = document.getElementById(`brick-${numBricks}`);
   element.remove();
@@ -154,24 +121,12 @@ export function destroy() {
 
 export function repair(...ids) {
   ids.forEach(function (brick) {
+    //giving the name 'brick' to each element in the 'ids' array.
     let repairBricks = document.getElementById(brick);
-    //if (repairBricks != null) {
     if (repairBricks.dataset.repaired != null) {
       repairBricks.dataset.repaired = "in progress";
     } else {
       repairBricks.dataset.repaired = "true";
     }
-    //}
   });
-  // for (let i = 1; i <= ids.length; i++) {
-  //   let brick = document.getElementById(`brick-${i}`);
-  //   brick.hasAttribute("foundation");
-
-  //   brick.hasAttribute("notFoundation");
-
-  // }
 }
-
-//repair(ids);
-
-//destroy(n)
