@@ -89,7 +89,9 @@ let expandingList = document.createElement('ul', { is : 'expanding-list' })
 //logic from :https://stackoverflow.com/questions/3583724/how-do-i-add-a-delay-in-a-javascript-loop
 let x = 1;
 
+let numBricks;
 export function build(n) {
+  numBricks = n;
   setTimeout(function () {
     // create a new div element
     let newDiv = document.createElement("div");
@@ -139,7 +141,23 @@ export function build(n) {
 }
 
 build();
+export function destroy() {
+  const element = document.getElementById(`brick-${numBricks}`);
+  element.remove();
+  numBricks = numBricks - 1;
+}
 
-export function repair(ids) {}
+export function repair(...ids) {
+  do {
+    document.getElementById(`brick-${i}`);
+    if (Element.getAttribute("foundation")) {
+      Element.setAttribute("in progress", "true");
+    } else {
+      Element.setAttribute("repaired", "true");
+    }
+  } while (i <= ids);
+}
 
-export function destroy() {}
+//repair(ids);
+
+//destroy(n)
