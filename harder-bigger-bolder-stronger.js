@@ -15,19 +15,19 @@ export function generateLetters() {
   let letter;
   let elem = 0;
   while (elem < 120) {
-    let newDiv = document.createElement("div"); //generate a 'div' element
-    newDiv.id = `div-${elem}`; // and give it an id
+    let myDiv = document.createElement("div"); //generate a 'div' element
+    myDiv.id = `letter_${elem}`; // and give it an id
     letter = alphabet[Math.floor(Math.random() * alphabet.length)]; //generate a random letter
-    document.getElementById(`div-${elem}`).textContent = "letter";
-    document.getElementById(`div-${elem}`).style.fontSize = 11 + elem; //increase  elements' font size from 11 to 130
+    myDiv.textContent = letter;
+    myDiv.style.fontSize = 11 + elem; //increase  elements' font size from 11 to 130
     if (elem <= 39) {
-      document.getElementById(`div-${elem}`).style.fontWeight = 300; //first third of sample
+      myDiv.style.fontWeight = 300; //first third of sample
     } else if (elem <= 79) {
-      document.getElementById(`div-${elem}`).style.fontWeight = 400; // second third of sample
+      myDiv.style.fontWeight = 400; // second third of sample
     } else {
-      document.getElementById(`div-${elem}`).style.fontWeight = 600; // last third of sample
+      myDiv.style.fontWeight = 600; // last third of sample
     }
-    document.append(newDiv);
+    document.body.appendChild(myDiv);
     elem++;
   }
 }
