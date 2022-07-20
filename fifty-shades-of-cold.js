@@ -26,56 +26,13 @@ let arrLength = colors.length - 1;
 let count = 0;
 let colorDiv;
 const arrSearch = [
-  "aqua",
-  "mediumaquamarine",
-  "aquamarine",
   "blue",
-  "slateblue",
-  "darkslateblue",
-  "aliceblue",
-  "cadetblue",
-  "steelblue",
-  "lightsteelblue",
-  "powderblue",
-  "lightblue",
-  "skyblue",
-  "lightskyblue",
-  "deepskyblue",
-  "dodgerblue",
-  "cornflowerblue",
-  "mediumslateblue",
-  "royalblue",
-  "blue",
-  "blueviolet",
-  "mediumblue",
-  "darkblue",
-  "midnightblue",
   "turquoise",
-  "mediumturquoise",
-  "darkturquoise",
-  "paleturquoise",
   "green",
-  "greenyellow",
-  "lawngreen",
-  "limegreen",
-  "palegreen",
-  "lightgreen",
-  "mediumspringgreen",
-  "springgreen",
-  "mediumseagreen",
-  "seagreen",
-  "forestgreen",
-  "darkgreen",
-  "yellowgreen",
-  "darkolivegreen",
-  "darkseagreen",
-  "lightseagreen",
   "cyan",
-  "lightcyan",
   "navy",
   "purple",
-  "mediumpurple",
-  "rebeccapurple",
+  "aqua",
 ];
 
 export function generateClasses() {
@@ -89,14 +46,24 @@ export function generateClasses() {
 
 export function generateColdShades() {
   //check for each colour inside the 'colors' array if it matches any of the colours from the 'arrSearch' array.
-  for (let s = 0; s <= arrSearch.length - 1; s++) {
+  for (let s = 0; s <= arrLength; s++) {
     //To do: populate an array with all the colour matches
-    if (colors.includes(arrSearch[s])) {
+    // if (colors.includes(arrSearch[s])) {
+    if (
+      colors[s].includes("aqua") ||
+      colors[s].includes("blue") ||
+      colors[s].includes("turquoise") ||
+      colors[s].includes("green") ||
+      colors[s].includes("cyan") ||
+      colors[s].includes("navy") ||
+      colors[s].includes("purple")
+    ) {
       let toAdd = colors.includes(arrSearch[s]);
       console.log(toAdd);
       let myDiv = document.createElement("div");
-      document.body.appendChild(myDiv).classList.add(`${arrSearch[s]}`);
-      myDiv.innerHTML = `${arrSearch[s]}`;
+      myDiv.className = `${colors[s]}`;
+      myDiv.innerHTML = `${colors[s]}`;
+      document.body.appendChild(myDiv);
     }
   }
 }
