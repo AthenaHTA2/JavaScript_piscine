@@ -28,13 +28,30 @@ Click 5 --> <button class="button one unpimp"></div>
 Click 6 --> <button class="button"></div>
 */
 
+import { styles } from "./pimp-my-style.data.js"; //HS: importing the 'styles' array
+let lastStyle = styles.length - 1;
+let count = 0;
 export function pimp() {
-  let numStyles = styles.length;
-  for (let i = 0; i < numStyles; i++) {
-    button.classList.add("styles[`${i}`]");
+  let styleBtn = document.querySelector(".button");
+  if (count < lastStyle && !styleBtn.classList.contains("unpimp")) {
+    styleBtn.classList.add(`${styles[count]}`);
+    count++;
+  } else if (count == lastStyle && !styleBtn.classList.contains("unpimp")) {
+    styleBtn.classList.add(`${styles[count]}`);
+    styleBtn.classList.toggle("unpimp");
+    count++;
+  } else {
+    if (styleBtn.classList.contains("unpimp") && count > 0) {
+      styleBtn.classList.remove(`${styles[count]}`);
+      count--;
+    } else {
+      styleBtn.classList.remove(`${styles[count]}`);
+      styleBtn.classList.toggle("unpimp");
+      count = 0;
+    }
   }
- 
-  div.classList.add("anotherclass");
-  div.classList.remove("foo");
-  div.classList.toggle("visible");
+
+  //div.classList.add("anotherclass");DONE
+  // div.classList.remove("foo");
+  // div.classList.toggle("visible");
 }
