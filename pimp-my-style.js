@@ -39,7 +39,6 @@ export function pimp() {
   } else if (count == lastStyle && !styleBtn.classList.contains("unpimp")) {
     styleBtn.classList.add(`${styles[count]}`);
     styleBtn.classList.toggle("unpimp");
-    count++;
   } else {
     if (styleBtn.classList.contains("unpimp") && count > 0) {
       styleBtn.classList.remove(`${styles[count]}`);
@@ -47,11 +46,6 @@ export function pimp() {
     } else {
       styleBtn.classList.remove(`${styles[count]}`);
       styleBtn.classList.toggle("unpimp");
-      count = 0;
     }
   }
-
-  //div.classList.add("anotherclass");DONE
-  // div.classList.remove("foo");
-  // div.classList.toggle("visible");
 }
