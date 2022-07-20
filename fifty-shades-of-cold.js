@@ -83,4 +83,9 @@ export function generateColdShades() {
   }
 }
 
-export function choseShade(c) {}
+export function choseShade(c) {
+  var elements = document.querySelectorAll("div"); // get all elements
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].style.backgroundColor = c;
+  }
+}
