@@ -46,6 +46,7 @@ const arrSearch = [
   "mediumslateblue",
   "royalblue",
   "blue",
+  "blueviolet",
   "mediumblue",
   "darkblue",
   "midnightblue",
