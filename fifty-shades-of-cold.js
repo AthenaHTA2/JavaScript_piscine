@@ -46,17 +46,32 @@ export function generateClasses() {
 
 export function generateColdShades() {
   //check for each colour inside the 'colors' array if it matches any of the colours from the 'arrSearch' array.
+  //for(let i = 0; i <=arrLength; i++){
   for (let s = 0; s <= arrSearch.length - 1; s++) {
-    const find = `/\.${arrSearch[s]}\.$/`; //the RegExp ..or should I use:  `\*${search[s]}\*`)?
-    let aMatch = new RegExp(find, "g"); //colours that contain the RegExp
-    console.log(aMatch);
-    //var matchColors = colors.match(aMatch); //Returns an array of all matches against the 'aMatch' RegExp
-    var matchColors = colors.include(aMatch); //Returns an array of all matches against the 'aMatch' RegExp
-    for (let i = 0; i < matchColors.length; i++) {
-      colorDiv = document.createElement("div"); //generate a 'div' element
-      colorDiv.className = `${matchColors[i]}`; // assign a class name equal to the colour
-      colorDiv.innerHTML = `${matchColors[i]}`; // add the inner HTML to display the name of colour
+    //To do: populate an array with all the colour matches
+    if (colors.includes(arrSearch[s])) {
+      let toAdd = colors.includes(arrSearch[s]);
+      console.log(toAdd);
+      let myDiv = document.createElement("div");
+      document.body.appendChild(myDiv).classList.add(`${arrSearch[s]}`);
+      myDiv.innerHTML = `${arrSearch[s]}`;
     }
+
+    // let aMatch = `${arrSearch[s]}`; //colours
+    // console.log(aMatch);
+    // for (let c = 0; c <= arrLength; c++) {
+    //   if (colors.includes(aMatch)) {
+    //     let newDiv = theBody.createElement("div");
+    //     theBody.appendChild(newDiv);
+    //   }
+    // }
+    // //var matchColors = colors.match(aMatch); //Returns an array of all matches against the 'aMatch' RegExp
+    // var matchColors = colors.include(aMatch); //Returns an array of all matches against the 'aMatch' RegExp
+    // for (let i = 0; i < matchColors.length; i++) {
+    //   colorDiv = document.createElement("div"); //generate a 'div' element
+    //   colorDiv.className = `${matchColors[i]}`; // assign a class name equal to the colour
+    //   colorDiv.innerHTML = `${matchColors[i]}`; // add the inner HTML to display the name of colour
+    // }
   }
 }
 
