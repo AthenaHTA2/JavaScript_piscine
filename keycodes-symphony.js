@@ -60,22 +60,18 @@ export function compose() {
 
       if (keyName === "Escape") {
         //Cassidy solution:
-        [...document.body.children]
-          .filter((e) => {
-            return e.tagName === "DIV";
-          })
-          .forEach((e) => {
-            document.body.removeChild(e);
-          });
-      }
+        // [...document.body.children]
+        //   .filter((e) => {
+        //     return e.tagName === "DIV";
+        //   })
+        //   .forEach((e) => {
+        //     document.body.removeChild(e);
+        //   });
 
-      //   if (event.ctrlKey) {
-      //     // Even though event.key is not 'Control' (e.g., 'a' is pressed),
-      //     // event.ctrlKey may be true if Ctrl key is pressed at the same time.
-      //     alert(`Combination of ctrlKey + ${keyName}`);
-      //   } else {
-      //     //alert(`Key pressed ${keyName}`);
-      //   }
+        document.querySelector("body").setAttribute("id", "body");
+        const wipeOut = document.getElementById("body");
+        wipeOut.innerHTML = "";
+      }
     },
     false
   );
