@@ -37,8 +37,10 @@ Object.values()
 
 */
 
-export function invert(object) {
-  var temp = object.keys;
-  object.keys = object.values;
-  object.keys = temp;
+export function invert(object1) {
+  const object2 = {};
+  Object.keys(object1).forEach((key) => {
+    ret[object1[key]] = key;
+  });
+  return object2;
 }
