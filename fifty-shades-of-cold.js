@@ -47,8 +47,6 @@ export function generateClasses() {
 export function generateColdShades() {
   //check for each colour inside the 'colors' array if it matches any of the colours from the 'arrSearch' array.
   for (let s = 0; s <= arrLength; s++) {
-    //To do: populate an array with all the colour matches
-    // if (colors.includes(arrSearch[s])) {
     if (
       colors[s].includes("aqua") ||
       colors[s].includes("blue") ||
@@ -69,11 +67,9 @@ export function generateColdShades() {
 }
 
 export function choseShade(c) {
-  var elements = document.querySelectorAll("div"); // get all elements
+  var elements = document.querySelectorAll("div"); // get all 'div' elements
   for (var i = 0; i < elements.length; i++) {
     elements[i].style.backgroundColor = c;
     elements[i].className = (`${colors[i]}`, `${c}`);
-    // elements[i].innerHTML += `.${colors[c]} { background: ${colors[c]};}\n`;
-    //elements[i].innerHTML = `${colors[c]}`;
   }
 }
