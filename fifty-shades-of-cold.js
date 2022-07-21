@@ -58,8 +58,8 @@ export function generateColdShades() {
       colors[s].includes("navy") ||
       colors[s].includes("purple")
     ) {
-     // let toAdd = colors.includes(arrSearch[s]); //not used; also it returns 7 colours instead of 50
-      // console.log(toAdd);
+      let toAdd = colors.includes(arrSearch[s]);
+      console.log(toAdd);
       let myDiv = document.createElement("div");
       myDiv.className = `${colors[s]}`;
       myDiv.innerHTML = `${colors[s]}`;
@@ -69,8 +69,7 @@ export function generateColdShades() {
 }
 
 export function choseShade(c) {
-  var elements = document.querySelectorAll("div"); // get all 'div' elements
-  console.log(div);
+  var elements = document.querySelectorAll("div"); // get all elements
   for (var i = 0; i < elements.length; i++) {
     elements[i].style.backgroundColor = c;
   }
