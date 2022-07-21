@@ -40,7 +40,7 @@ Object.values()
 export function invert(object1) {
   const object2 = {};
   Object.keys(object1).forEach((key) => {
-    ret[object1[key]] = key;
+    object2[object1[key]] = key;
   });
   return object2;
 }
