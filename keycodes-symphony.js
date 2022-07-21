@@ -31,68 +31,52 @@ Properties:
 */
 
 export function compose() {
-  let myDiv;
+  var myDiv;
+  var note;
   document.addEventListener(
     "keydown",
     (event) => {
       const keyName = event.key;
-      //  if (`${keyName}` >= "a" && `${keyName}` <= "z") {
-      myDiv = document.createElement("div"); //generate a 'div' element
-      myDiv.className = "note";
-      document.body.appendChild(myDiv);
-      //Generate a random colour to apply to myDiv background:
-      var x = Math.floor(Math.random() * 256);
-      var y = Math.floor(Math.random() * 256);
-      var z = Math.floor(Math.random() * 256);
-      var bgColor = "rgb(" + x + "," + y + "," + z + ")";
-      //alert(`bgr colour :`+ bgColor)
-      myDiv.style.background = bgColor;
-      myDiv.textContent = `${keyName}`
-      
-      alert(`Key pressed + ${keyName}`);
-      console.log(keyName);
-      // }
-      if (keyName === "Control") {
-        // do not alert when only Control key is pressed.
-        return;
+      if (keyName >= "a" && keyName <= "z" && keyName != "Backspace") {
+        myDiv = document.createElement("div"); //generate a 'div' element
+        myDiv.className = "note";
+        document.body.appendChild(myDiv);
+        //Generate a random colour to apply to myDiv background:
+        var x = Math.floor(Math.random() * 256);
+        var y = Math.floor(Math.random() * 256);
+        var z = Math.floor(Math.random() * 256);
+        var bgColor = "rgb(" + x + "," + y + "," + z + ")";
+        //alert(`bgr colour :`+ bgColor)
+        myDiv.style.background = bgColor;
+        myDiv.textContent = `${keyName}`;
+
+        //alert(`Key pressed + ${keyName}`);
+        console.log(keyName);
       }
 
-      if (event.ctrlKey) {
-        // Even though event.key is not 'Control' (e.g., 'a' is pressed),
-        // event.ctrlKey may be true if Ctrl key is pressed at the same time.
-        alert(`Combination of ctrlKey + ${keyName}`);
-      } else {
-        //alert(`Key pressed ${keyName}`);
+      if (keyName === "Backspace") {
+        document.body.lastElementChild.remove();
       }
+
+      if (keyName === "Escape") {
+        //Cassidy solution:
+        [...document.body.children]
+          .filter((e) => {
+            return e.tagName === "DIV";
+          })
+          .forEach((e) => {
+            document.body.removeChild(e);
+          });
+      }
+
+      //   if (event.ctrlKey) {
+      //     // Even though event.key is not 'Control' (e.g., 'a' is pressed),
+      //     // event.ctrlKey may be true if Ctrl key is pressed at the same time.
+      //     alert(`Combination of ctrlKey + ${keyName}`);
+      //   } else {
+      //     //alert(`Key pressed ${keyName}`);
+      //   }
     },
     false
   );
-
-  //document.addEventListener('keyup', (event) => {
-  //     const keyName = event.key;
-
-  //     // As the user releases the Ctrl key, the key is no longer active,
-  //     // so event.ctrlKey is false.
-  //     if (keyName === 'Control') {
-  //       alert('Control key was released');
-  //     }
-  //   }, false);
-  // let letter = KeyboardEvent.key
-  // alert(letter)
-  // console.log(letter)
-  //     const keyboard = navigator.keyboard;
-  // keyboard.getLayoutMap()
-  // .then(keyboardLayoutMap => {
-  //   const upKey = keyboardLayoutMap.get('KeyW');
-  //   window.alert('Press ' + upKey + ' to move up.');
-  // })
-
-  //KeyboardEvent.DOM_KEY_LOCATION_STANDARD
-
-  //an example for onKeyPress:
-  //  type="text" onKeyPress="handleInput(this.value)"
-
-  //     function handleInput(value){
-  //         alert(value);
-  //     }
 }
