@@ -72,5 +72,8 @@ export function choseShade(c) {
   var elements = document.querySelectorAll("div"); // get all elements
   for (var i = 0; i < elements.length; i++) {
     elements[i].style.backgroundColor = c;
+    elements[i].className = (`${colors[i]}`, `${c}`);
+    // elements[i].innerHTML += `.${colors[c]} { background: ${colors[c]};}\n`;
+    //elements[i].innerHTML = `${colors[c]}`;
   }
 }
