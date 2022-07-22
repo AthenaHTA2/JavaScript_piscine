@@ -11,24 +11,59 @@ omit: contains only those keys which do not match the string, or do not appear i
 //Object.fromEntries() : Returns a new object from an iterable of [key, value] pairs. (This is the reverse of Object.entries).
 
 //Makes a new object that contains only those keys which appear in the string or array of strings.
-//My own solution:
-// export function pick(obj1, str) {
-//   var arrStr = [];
-//   var selected1 = {}; //create an empty object
-//   if (typeof str === "string") {
-//     //If 'str' is not an array of strings,
-//     arrStr = [str]; // turn it into an array of strings
-//   }
-//   //now checking that 'obj1' keys equal strings in 'arrStr':
-//   arrStr.forEach(function(arrItem)){
-    
-//   }
-//   for (let i = 0; i < arrStr.length; i++) {
-//     selected1 = obj1.filter(function (objKey) {
-//       return objKey == arrStr[i];
-//     });
-//   }
-// //Umair's solution that throws an error: Cannot read property 'undefined' of undefined on row 46
+//
+//    My own solution for 'pick':
+function pick(obj1, str) {
+  var arrStr = [];
+  var selected1 = {}; //create an empty object
+  if (typeof str === "string") {
+    //If 'str' is not an array of strings,
+    arrStr = [str]; // turn it into an array of strings
+    //console.log("string to array - ", arrStr);
+  } else {
+    arrStr = str;
+    //console.log("array to begin with", arrStr);
+  }
+  //now checking that 'obj1' keys equal strings in 'arrStr':
+  arrStr.forEach(function (arrItem) {
+    //console.log(arrItem);
+    if (Object.keys(obj1).includes(arrItem)) {
+      // console.log(Object.keys(obj1).includes(arrItem));
+      //if the array of keys from 'obj1' includes the 'arrItem' from 'arrStr' array
+      selected1[arrItem] = obj1[arrItem]; //add the 'arrItem' key:value pair to the 'selected1' object.
+    }
+  });
+  return selected1;
+}
+
+//pick({ firstName: "James", lastName: "Bond" }, ["firstName", "lastName"]);
+
+//contains only those keys which do not match the string, or do not appear in the array of strings.
+
+//  My own solution for 'omit':
+function omit(obj2, str) {
+  var arrStr = [];
+  var selected2 = {}; //create an empty object
+  if (typeof str === "string") {
+    //If 'str' is not an array of strings,
+    arrStr = [str]; // turn it into an array of strings
+  } else {
+    arrStr = str;
+  }
+  //now checking that 'obj2' keys don't equal strings in 'arrStr':
+  const keysObj = Object.keys(obj2) 
+    //console.log(arrItem);
+    keysObj.forEach(key )
+    if (!arrItem.includes(objKey)) {
+      // console.log(Object.keys(obj1).includes(arrItem));
+      //if the array of keys from 'obj1' includes the 'arrItem' from 'arrStr' array
+      selected2[objKey] = obj2[objKey]; //add the 'arrItem' key:value pair to the 'selected1' object.
+    }
+  });
+  return selected2;
+}
+
+// //Umair's solution for the 'pick' function:
 // function pick(obj, key) {
 //   let result = {};
 //   if (Array.isArray(key)) {
@@ -49,36 +84,40 @@ omit: contains only those keys which do not match the string, or do not appear i
 //       result[key] = obj[key];
 //     }
 //   }
+// return selected1;
+//}
 
-//   return result;
+//Luis's solution for pick:
+// export function pick(obj, keys) {
+//   let reslt = {};
+//   if (Array.isArray(keys)) {
+//     keys.forEach((key) => {
+//       if (Object.keys(obj).includes(key)) {
+//         reslt[key] = obj[key];
+//       }
+//     });
+//   } else if (Object.keys(obj).includes(keys)) {
+//     reslt[keys] = obj[keys];
+//   }
+//   return reslt;
 // }
 
-//Luis's solutions:
-export function pick(obj, keys) {
-  let reslt = {};
-  if (Array.isArray(keys)) {
-    keys.forEach((key) => {
-      if (Object.keys(obj).includes(key)) {
-        reslt[key] = obj[key];
-      }
-    });
-  } else if (Object.keys(obj).includes(keys)) {
-    reslt[keys] = obj[keys];
-  }
-  return reslt;
-}
+//Luis's solution for omit:
+// function omit(obj, keys) {
+//   let reslt = {};
+//   Object.keys(obj).forEach((key) => {
+//     if (!keys.includes(key)) {
+//       reslt[key] = obj[key];
+//     }
+//   });
 
-export function omit(obj, keys) {
-  let reslt = {};
-  Object.keys(obj).forEach((key) => {
-    if (!keys.includes(key)) {
-      reslt[key] = obj[key];
-    }
-  });
+//   return reslt;
+// }
 
-  return reslt;
-}
-
+// omit({ drill: "bosh", grinders: "DeWalt", saws: " Makita" }, [
+//   "grinders",
+//   "saws",
+// ]);
 
 //alternatively, using the filter() method to compare arrObjKeys and arrStr:
 // for(let i=0; i< arrStr.length; i++){
