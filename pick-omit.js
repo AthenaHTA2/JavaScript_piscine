@@ -26,29 +26,59 @@ omit: contains only those keys which do not match the string, or do not appear i
 //       return objKey == arrStr[i];
 //     });
 //   }
+//Umair's solution that throws an error: Cannot read property 'undefined' of undefined on row 46
+// function pick(obj, key) {
+//   let result = {};
+//   if (Array.isArray(key)) {
+//     key.forEach((key) => {
+//       if (obj[key] != undefined) {
+//         result[key] = obj[key];
+//       }
+//     });
+//   } else if (typeof key == "object") {
+//     for (let key of Object.keys(obj)) {
+//       if (obj[key] != undefined) {
+//         result[key] = obj[key];
+//       }
+//     }
+//   } else {
+//     if (obj[key] != undefined) {
+//       console.log(obj[key])
+//       result[key] = obj[key];
+//     }
+//   }
 
-export function pick(obj, key) {
-  let result = {};
-  if (Array.isArray(key)) {
-    key.forEach((key) => {
-      if (obj[key] != undefined) {
-        result[key] = obj[key];
+//   return result;
+// }
+
+//Luis's solutions:
+function pick(obj, keys) {
+  let reslt = {};
+  if (Array.isArray(keys)) {
+    keys.forEach((key) => {
+      if (Object.keys(obj).includes(key)) {
+        reslt[key] = obj[key];
       }
     });
-  } else if (typeof key == "object") {
-    for (let key of Object.keys(obj)) {
-      if (obj[key] != undefined) {
-        result[key] = obj[key];
-      }
-    }
-  } else {
-    if (obj[key] != undefined) {
-      result[key] = obj[key];
-    }
+  } else if (Object.keys(obj).includes(keys)) {
+    reslt[keys] = obj[keys];
   }
-
-  return result;
+  return reslt;
 }
+
+function omit(obj, keys) {
+  let reslt = {};
+  Object.keys(obj).forEach((key) => {
+    if (!keys.includes(key)) {
+      reslt[key] = obj[key];
+    }
+  });
+
+  return reslt;
+}
+
+pick();
+omit();
 //alternatively, using the filter() method to compare arrObjKeys and arrStr:
 // for(let i=0; i< arrStr.length; i++){
 // var arrUsedKeys =  arrObjKeys.filter(function(arrKeys) {
@@ -65,25 +95,3 @@ export function pick(obj, key) {
 // });
 
 //new object contains only those keys which do not match the string, or do not appear in the array of strings.
-export function omit(obj, key) {
-  let result = {};
-  if (Array.isArray(key)) {
-    key.forEach((key) => {
-      if (obj[key] != key) {
-        result[key] == obj[key];
-      }
-    });
-  } else if (typeof key == "object") {
-    for (let key of Object.keys(obj)) {
-      if (obj[key] != undefined) {
-        result[key] == obj[key];
-      }
-    }
-  } else {
-    if (obj[key] != key) {
-      result[key] == obj[key];
-    }
-  }
-
-  return result;
-}
