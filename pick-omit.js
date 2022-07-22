@@ -12,17 +12,17 @@ omit: contains only those keys which do not match the string, or do not appear i
 
 //Makes a new object that contains only those keys which appear in the string or array of strings.
 //My own solution:
-export function pick(obj1, str) {
-  var arrStr = [];
-  var selected1 = {}; //create an empty object
-  if (typeof str === "string") {
-    //If 'str' is not an array of strings,
-    arrStr = [str]; // turn it into an array of strings
-  }
-  //now checking that 'obj1' keys equal strings in 'arrStr':
-  arrStr.forEach(function(arrItem)){
+// export function pick(obj1, str) {
+//   var arrStr = [];
+//   var selected1 = {}; //create an empty object
+//   if (typeof str === "string") {
+//     //If 'str' is not an array of strings,
+//     arrStr = [str]; // turn it into an array of strings
+//   }
+//   //now checking that 'obj1' keys equal strings in 'arrStr':
+//   arrStr.forEach(function(arrItem)){
     
-  }
+//   }
 //   for (let i = 0; i < arrStr.length; i++) {
 //     selected1 = obj1.filter(function (objKey) {
 //       return objKey == arrStr[i];
