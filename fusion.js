@@ -53,7 +53,7 @@ function fusion(obj1, obj2) {
   } else if (typeof obj1 === "string" && typeof obj2 === "string") {
     //check if objects are strings
     result = obj1 + " " + obj2;
-  } else if (Object.getPrototypeOf(obj1) != Object.getPrototypeOf(obj2)) {
+  } else if (!Object.is(obj1, obj2)) {//if type of objects is not the same
     result = obj2;
   }
 
