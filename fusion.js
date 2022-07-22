@@ -31,6 +31,7 @@ function fusion(obj1, obj2) {
   var result;
   //
   if (Array.isArray(obj1) && Array.isArray(obj2)) {
+    //check if objects are arrays
     //merge arrays
     arr_1_Item = obj1[0];
     if (Array.isArray(arr_1_Item)) {
@@ -49,18 +50,26 @@ function fusion(obj1, obj2) {
       });
     }
     result = newArr;
+  } else if (typeof obj1 === "string" && typeof obj2 === "string") {
+    //check if objects are strings
+    result = obj1 + " " + obj2;
+  } else if (Object.getPrototypeOf(obj1) != Object.getPrototypeOf(obj2)) {
+    result = obj2;
   }
+
   console.log(result);
   return result;
 }
 
+fusion({ a: "str" }, { a: 1 });
+//fusion({ a: "A", b: "B", c: "C" }, { a: "B", b: "C" });
 //fusion([1, "2"], [2]);
 
-fusion(
-  [[], [1]],
-  [
-    [12, 3],
-    [2, 3],
-    ["2", "1"],
-  ]
-);
+// fusion(
+//   [[], [1]],
+//   [
+//     [12, 3],
+//     [2, 3],
+//     ["2", "1"],
+//   ]
+// );
