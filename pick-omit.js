@@ -11,37 +11,79 @@ omit: contains only those keys which do not match the string, or do not appear i
 //Object.fromEntries() : Returns a new object from an iterable of [key, value] pairs. (This is the reverse of Object.entries).
 
 //new object contains only those keys which appear in the string or array of strings.
-export function pick(obj1, str) {
-  var selected = {}; //create an empty object
-  var arrObjPairs = Object.entries(obj1); // make an array of 'obj1' string keyed:property [key, value] pairs.
-  var arrObjKeys = Object.keys(obj1)// make an array of 'obj1' keys
-  if (typeof str === "string") {
-    //If 'str' is not an array of strings,
-    var arrStr = [str]; // turn it into an array of strings
+// export function pick(obj1, str) {
+//   var arrStr = [];
+//   var selected1 = {}; //create an empty object
+//   var arrObjPairs = Object.entries(obj1); // make an array of 'obj1' string keyed:property [key, value] pairs.
+//   var arrObjKeys = Object.keys(obj1); // make an array of 'obj1' keys
+//   if (typeof str === "string") {
+//     //If 'str' is not an array of strings,
+//     arrStr = [str]; // turn it into an array of strings
+//   }
+//   //now checking that 'obj1' keys equal strings in 'arrStr':
+//   for (let i = 0; i < arrStr.length; i++) {
+//     selected1 = obj1.filter(function (objKey) {
+//       return objKey == arrStr[i];
+//     });
+//   }
+
+export function pick(obj, key) {
+  let result = {};
+  if (Array.isArray(key)) {
+    key.forEach((key) => {
+      if (obj[key] != undefined) {
+        result[key] = obj[key];
+      }
+    });
+  } else if (typeof key == "object") {
+    for (let key of Object.keys(obj)) {
+      if (obj[key] != undefined) {
+        result[key] = obj[key];
+      }
+    }
+  } else {
+    if (obj[key] != undefined) {
+      result[key] = obj[key];
+    }
   }
-  //now checking that 'obj1' keys equal strings in 'arrStr':
-  for(let i=0; i< arrStr.length; i++){
-    selected = obj1.filter(function(objKey){
-      return objKey==arrStr[i]
-    })
-  }
+
+  return result;
+}
 //alternatively, using the filter() method to compare arrObjKeys and arrStr:
 // for(let i=0; i< arrStr.length; i++){
 // var arrUsedKeys =  arrObjKeys.filter(function(arrKeys) {
 //   return arrKeys ==arrStr[i]
 // });
 
-
-  //forEach approach:
-  // arrObjKeys.forEach((objKey) => {
-    // loop through array
-    // if (obj1[word] != undefined) {
-      //if an object key equals the array item
-      //append that key:value pair to the 'selected' object
-  //   }
-  // });
-
-}
+//forEach approach:
+// arrObjKeys.forEach((objKey) => {
+// loop through array
+// if (obj1[word] != undefined) {
+//if an object key equals the array item
+//append that key:value pair to the 'selected' object
+//   }
+// });
 
 //new object contains only those keys which do not match the string, or do not appear in the array of strings.
-export function omit(obj2, str) {}
+export function omit(obj, key) {
+  let result = {};
+  if (Array.isArray(key)) {
+    key.forEach((key) => {
+      if (obj[key] != key) {
+        result[key] == obj[key];
+      }
+    });
+  } else if (typeof key == "object") {
+    for (let key of Object.keys(obj)) {
+      if (obj[key] != undefined) {
+        result[key] == obj[key];
+      }
+    }
+  } else {
+    if (obj[key] != key) {
+      result[key] == obj[key];
+    }
+  }
+
+  return result;
+}
