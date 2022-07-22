@@ -10,23 +10,25 @@ omit: contains only those keys which do not match the string, or do not appear i
 //Object.entries() : Returns an array containing all of the [key, value] pairs of a given object's own enumerable string properties.
 //Object.fromEntries() : Returns a new object from an iterable of [key, value] pairs. (This is the reverse of Object.entries).
 
-//new object contains only those keys which appear in the string or array of strings.
-// export function pick(obj1, str) {
-//   var arrStr = [];
-//   var selected1 = {}; //create an empty object
-//   var arrObjPairs = Object.entries(obj1); // make an array of 'obj1' string keyed:property [key, value] pairs.
-//   var arrObjKeys = Object.keys(obj1); // make an array of 'obj1' keys
-//   if (typeof str === "string") {
-//     //If 'str' is not an array of strings,
-//     arrStr = [str]; // turn it into an array of strings
-//   }
-//   //now checking that 'obj1' keys equal strings in 'arrStr':
+//Makes a new object that contains only those keys which appear in the string or array of strings.
+//My own solution:
+export function pick(obj1, str) {
+  var arrStr = [];
+  var selected1 = {}; //create an empty object
+  if (typeof str === "string") {
+    //If 'str' is not an array of strings,
+    arrStr = [str]; // turn it into an array of strings
+  }
+  //now checking that 'obj1' keys equal strings in 'arrStr':
+  arrStr.forEach(function(arrItem)){
+    
+  }
 //   for (let i = 0; i < arrStr.length; i++) {
 //     selected1 = obj1.filter(function (objKey) {
 //       return objKey == arrStr[i];
 //     });
 //   }
-//Umair's solution that throws an error: Cannot read property 'undefined' of undefined on row 46
+// //Umair's solution that throws an error: Cannot read property 'undefined' of undefined on row 46
 // function pick(obj, key) {
 //   let result = {};
 //   if (Array.isArray(key)) {
@@ -52,7 +54,7 @@ omit: contains only those keys which do not match the string, or do not appear i
 // }
 
 //Luis's solutions:
-function pick(obj, keys) {
+export function pick(obj, keys) {
   let reslt = {};
   if (Array.isArray(keys)) {
     keys.forEach((key) => {
@@ -66,7 +68,7 @@ function pick(obj, keys) {
   return reslt;
 }
 
-function omit(obj, keys) {
+export function omit(obj, keys) {
   let reslt = {};
   Object.keys(obj).forEach((key) => {
     if (!keys.includes(key)) {
@@ -77,8 +79,7 @@ function omit(obj, keys) {
   return reslt;
 }
 
-pick();
-omit();
+
 //alternatively, using the filter() method to compare arrObjKeys and arrStr:
 // for(let i=0; i< arrStr.length; i++){
 // var arrUsedKeys =  arrObjKeys.filter(function(arrKeys) {
