@@ -51,13 +51,12 @@ function omit(obj2, str) {
     arrStr = str;
   }
   //now checking that 'obj2' keys don't equal strings in 'arrStr':
-  const keysObj = Object.keys(obj2) 
-    //console.log(arrItem);
-    keysObj.forEach(key )
-    if (!arrItem.includes(objKey)) {
+  const keysObj = Object.keys(obj2);
+  keysObj.forEach(function (key) {
+    if (!arrStr.includes(key)) {
       // console.log(Object.keys(obj1).includes(arrItem));
       //if the array of keys from 'obj1' includes the 'arrItem' from 'arrStr' array
-      selected2[objKey] = obj2[objKey]; //add the 'arrItem' key:value pair to the 'selected1' object.
+      selected2[key] = obj2[key]; //add the 'arrItem' key:value pair to the 'selected1' object.
     }
   });
   return selected2;
@@ -113,25 +112,3 @@ function omit(obj2, str) {
 
 //   return reslt;
 // }
-
-// omit({ drill: "bosh", grinders: "DeWalt", saws: " Makita" }, [
-//   "grinders",
-//   "saws",
-// ]);
-
-//alternatively, using the filter() method to compare arrObjKeys and arrStr:
-// for(let i=0; i< arrStr.length; i++){
-// var arrUsedKeys =  arrObjKeys.filter(function(arrKeys) {
-//   return arrKeys ==arrStr[i]
-// });
-
-//forEach approach:
-// arrObjKeys.forEach((objKey) => {
-// loop through array
-// if (obj1[word] != undefined) {
-//if an object key equals the array item
-//append that key:value pair to the 'selected' object
-//   }
-// });
-
-//new object contains only those keys which do not match the string, or do not appear in the array of strings.
