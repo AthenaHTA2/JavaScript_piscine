@@ -79,123 +79,126 @@ function fusion(obj1, obj2) {
     result = obj1 + " " + obj2;
     //check if objects are numbers
   } else if (typeof obj1 === "number" && typeof obj2 === "number") {
-    //when number objects are nested in objects
-    //from: https://stackoverflow.com/questions/42488048/how-can-i-sum-properties-from-two-objects
-    //..but I couldn't get it to work  :-(
-    // const deepMergeSum = (obj1, obj2) => {
-    //   return Object.keys(obj1).reduce((acc, key) => {
-    //     if (typeof obj2[key] === "object") {
-    //       acc[key] = deepMergeSum(obj1[key], obj2[key]);
-    //     } else if (obj2.hasOwnProperty(key) && !isNaN(parseFloat(obj2[key]))) {
-    //       acc[key] = obj1[key] + obj2[key];
-    //     }
-    //     return acc;
-    //   }, {});
-    // };
-    //creating a single object from 'obj1' and 'obj2'
-    //from: https://stackoverflow.com/questions/8925820/javascript-object-push-function
-    //again, I couldn't get it to work..
-    // var data = [];
-    // ...
-    // ...
-    // var tempData = Object.entries(obj1).concat(Object.entries(obj2));
-    // console.log(tempData);
-    // for (var index = 0; index < obj2.length; index++) {
-    //   if (obj2[index].Status == "Valid") {
-    //     tempData.push(obj2);
-    //   }
-    // }
-    // data = tempData;
-    // result = data.reduce((acc, obj) => (acc = deepMergeSum(acc, obj)));
-
-    if (
-      typeof Object.entries(obj1).values === "number" &&
-      typeof Object.entries(obj2).values === "number"
-    ) {
-      Object.keys(obj1).forEach((key) => {
-        object2[obj1[key]] =
-          Object.values(obj1[key]) + Object.values(obj2[key]);
-      });
-      result = object2;
-
-      //   }else{
-      result = obj1 + obj2;
-      //   }
-    } else if (typeof obj1 != typeof obj2) {
-      //if type of objects is not the same
-      result = obj2;
-      //return result;
-    }
-
-    //Luis solution:
-    //   const fusion = (f, s) => {
-    //     if (Array.isArray(f) && Array.isArray(s)) {
-    //         return f.concat(s);
-    //     }
-
-    //     if (typeof f === "string" && typeof s === "string") {
-    //         return f + " " + s;
-    //     }
-
-    //     if (typeof f === "number" && typeof s === "number") {
-    //         return f + s;
-    //     }
-
-    //     if (f === undefined) {
-    //         return s;
-    //     }
-
-    //     if (s === undefined) {
-    //         return f;
-    //     }
-
-    //     if (typeof f != typeof s) {
-    //         return s;
-    //     }
-
-    //     if (f instanceof RegExp && s instanceof RegExp) {
-    //         return s;
-    //     }
-    //   //A set is a collection of items which are unique i.e no element can be repeated
-    //   //in other words if keys from object 'f' are different from keys in object 's'.
-    //     if (f instanceof Set && s instanceof Set) {
-    //         return s;
-    //     }
-
-    //     let reslt = {};
-    //   //step 1: join keys from f and s and turn them into an array
-    //     let keys = Object.keys(f).concat(Object.keys(s));
-    //     console.log("the concatenated keys: ", keys)
-    //     //filter the 'keys' array for first occurrence of each key.
-    //     //This gives an array of unique keys
-    //     keys.filter((key, i) => keys.indexOf(key) === i);
-    //   //using recursion to merge object 'f' and 's'
-    //     keys.forEach((key) => {
-    //         reslt[key] = fusion(f[key], s[key]);
-    //     });
-
-    //     return reslt;
-    // }
-    console.log(result);
-    return result;
+    result = obj1 + obj2;
   }
+  //when number objects are nested in objects
+  //from: https://stackoverflow.com/questions/42488048/how-can-i-sum-properties-from-two-objects
+  //..but I couldn't get it to work  :-(
+  // const deepMergeSum = (obj1, obj2) => {
+  //   return Object.keys(obj1).reduce((acc, key) => {
+  //     if (typeof obj2[key] === "object") {
+  //       acc[key] = deepMergeSum(obj1[key], obj2[key]);
+  //     } else if (obj2.hasOwnProperty(key) && !isNaN(parseFloat(obj2[key]))) {
+  //       acc[key] = obj1[key] + obj2[key];
+  //     }
+  //     return acc;
+  //   }, {});
+  // };
+  //creating a single object from 'obj1' and 'obj2'
+  //from: https://stackoverflow.com/questions/8925820/javascript-object-push-function
+  //again, I couldn't get it to work..
+  // var data = [];
+  // ...
+  // ...
+  // var tempData = Object.entries(obj1).concat(Object.entries(obj2));
+  // console.log(tempData);
+  // for (var index = 0; index < obj2.length; index++) {
+  //   if (obj2[index].Status == "Valid") {
+  //     tempData.push(obj2);
+  //   }
+  // }
+  // data = tempData;
+  // result = data.reduce((acc, obj) => (acc = deepMergeSum(acc, obj)));
+  else if (
+    typeof Object.entries(obj1)[0][1] === "number" &&
+    typeof Object.entries(obj2)[0][1] === "number"
+  ) {
+    Object.keys(obj1).forEach((key) => {
+      let sum = obj1[key] + obj2[key];
+      // console.log(sum);
+      // console.log(obj1[key]);
+      // console.log(obj2[key]);
+      object2[Object.keys(obj1)] = sum;
+    });
+    result = object2;
 
-  //Tests:
-  //fusion({ nbr: 12 }, { nbr: 23 });
-  //fusion(({ a: 12, b: 2, c: 43 }, { a: 23, b: 2 }));
-  // fusion(
-  //   { a: { b: [1, 2], c: { d: 2 } } },
-  //   { a: { b: [0, 2, 1], c: { d: 23 } } }
-  // );
-  //fusion({ a: "str" }, { a: 1 });0
-  //fusion({ a: "A", b: "B", c: "C" }, { a: "B", b: "C" });
-  //fusion([1, "2"], [2]);
+    //   }else{
 
-  // fusion(
-  //   [[], [1]],
-  //   [
-  //     [12, 3],
-  //     [2, 3],
-  //     ["2", "1"],
-  //   ]
+    //   }
+  } else if (typeof obj1 != typeof obj2) {
+    //if type of objects is not the same
+    result = obj2;
+    //return result;
+  }
+  console.log(result);
+  return result;
 }
+
+//Tests:
+fusion({ nbr: 12 }, { nbr: 23 });
+//fusion(({ a: 12, b: 2, c: 43 }, { a: 23, b: 2 }));
+// fusion(
+//   { a: { b: [1, 2], c: { d: 2 } } },
+//   { a: { b: [0, 2, 1], c: { d: 23 } } }
+// );
+//fusion({ a: "str" }, { a: 1 });0
+//fusion({ a: "A", b: "B", c: "C" }, { a: "B", b: "C" });
+//fusion([1, "2"], [2]);
+
+// fusion(
+//   [[], [1]],
+//   [
+//     [12, 3],
+//     [2, 3],
+//     ["2", "1"],
+//   ]
+
+//Luis wonderful solution:
+//   const fusion = (f, s) => {
+//     if (Array.isArray(f) && Array.isArray(s)) {
+//         return f.concat(s);
+//     }
+
+//     if (typeof f === "string" && typeof s === "string") {
+//         return f + " " + s;
+//     }
+
+//     if (typeof f === "number" && typeof s === "number") {
+//         return f + s;
+//     }
+
+//     if (f === undefined) {
+//         return s;
+//     }
+
+//     if (s === undefined) {
+//         return f;
+//     }
+
+//     if (typeof f != typeof s) {
+//         return s;
+//     }
+
+//     if (f instanceof RegExp && s instanceof RegExp) {
+//         return s;
+//     }
+//   //A set is a collection of items which are unique i.e no element can be repeated
+//   //in other words if keys from object 'f' are different from keys in object 's'.
+//     if (f instanceof Set && s instanceof Set) {
+//         return s;
+//     }
+
+//     let reslt = {};
+//   //step 1: join keys from f and s and turn them into an array
+//     let keys = Object.keys(f).concat(Object.keys(s));
+//     console.log("the concatenated keys: ", keys)
+//     //filter the 'keys' array for first occurrence of each key.
+//     //This gives an array of unique keys
+//     keys.filter((key, i) => keys.indexOf(key) === i);
+//   //using recursion to merge object 'f' and 's'
+//     keys.forEach((key) => {
+//         reslt[key] = fusion(f[key], s[key]);
+//     });
+
+//     return reslt;
+//}
