@@ -50,10 +50,20 @@ function fusion(obj1, obj2) {
       });
     }
     result = newArr;
-  } else if (typeof obj1 === "string" && typeof obj2 === "string") {
     //check if objects are strings
+  } else if (typeof obj1 === "string" && typeof obj2 === "string") {
+    if (
+      typeof Object.entries(obj1).values === "string" &&
+      typeof Object.entries(obj2).values === "string"
+    ) {
+    }
+
     result = obj1 + " " + obj2;
-  } else if (!Object.is(obj1, obj2)) {//if type of objects is not the same
+  } else if (typeof obj1 === "number" && typeof obj2 === "number") {
+    //check if objects are numbers
+    result = obj1 + obj2;
+  } else if (!Object.is(obj1, obj2)) {
+    //if type of objects is not the same
     result = obj2;
   }
 
@@ -61,8 +71,8 @@ function fusion(obj1, obj2) {
   return result;
 }
 
-fusion({ a: "str" }, { a: 1 });
-//fusion({ a: "A", b: "B", c: "C" }, { a: "B", b: "C" });
+//fusion({ a: "str" }, { a: 1 });
+fusion({ a: "A", b: "B", c: "C" }, { a: "B", b: "C" });
 //fusion([1, "2"], [2]);
 
 // fusion(
