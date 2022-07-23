@@ -25,6 +25,7 @@ is then passed as the acc for the next iteration, until the last element.
 */
 
 function fusion(obj1, obj2) {
+
   var item1;
   var item2;
   var newArr = [];
@@ -44,6 +45,7 @@ function fusion(obj1, obj2) {
     return obj1;
   }
   //check if objects are arrays
+
   if (Array.isArray(obj1) && Array.isArray(obj2)) {
     //are 'obj1' and 'obj2' multi-dimensional arrays?
     arr_1_Item = obj1[0];
@@ -58,13 +60,17 @@ function fusion(obj1, obj2) {
         result = newArr
       }
       result = newArr;
+  
     } else {
       obj1.forEach(function (arr_1_Item) {
         newArr = obj1.concat(obj2);
+   
         result = newArr
+
       });
       result = newArr;
     }
+
     result = newArr;
 
     //check if inputs are strings
@@ -82,6 +88,24 @@ function fusion(obj1, obj2) {
         temp = obj1[key];
       } else {
         temp = obj1[key] + " " + obj2[key];
+      }
+      object2[key] = temp;
+    });
+    result = object2;
+  }
+  
+  else if (
+    typeof obj1 === "object" &&
+    typeof obj2 === "object" &&
+    typeof Object.entries(obj1)[0][1] === "object" &&
+    typeof Object.entries(obj2)[0][1] === "object"
+  ) {
+
+    Object.keys(obj1).forEach((key) => {
+      if (obj2[key] === undefined) {
+        temp = obj1[key];
+      } else {
+        temp = obj1[key] + obj2[key];
       }
       object2[key] = temp;
     });
@@ -116,13 +140,13 @@ function fusion(obj1, obj2) {
 //fusion({ str: "hello" }, { str: "there" });
 //fusion({ nbr: 12 }, { nbr: 23 });
 //fusion({ a: 12, b: 2, c: 43 }, { a: 23, b: 2 });
-// fusion(
-//   { a: { b: [1, 2], c: { d: 2 } } },
-//   { a: { b: [0, 2, 1], c: { d: 23 } } }
-// );
+//  fusion(
+//    { a: { b: [1, 2], c: { d: 2 } } };
+//    { a: { b: [0, 2, 1], c: { d: 23 } } }
+//  );
 //fusion({ a: "str" }, { a: 1 });0
 //fusion({ a: "A", b: "B", c: "C" }, { a: "B", b: "C" });
-//fusion([1, "2"], [2]);
+fusion({ arr: [1, '2'] }, { arr: [2] })
 //  fusion(
 //   [[], [1]],
 //   [
