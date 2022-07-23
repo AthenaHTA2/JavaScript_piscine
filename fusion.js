@@ -25,6 +25,7 @@ is then passed as the acc for the next iteration, until the last element.
 */
 
 function fusion(obj1, obj2) {
+
   var item1;
   var item2;
   var newArr = [];
@@ -66,20 +67,20 @@ function fusion(obj1, obj2) {
     result = newArr;
     //check if objects are strings
   } else if (typeof obj1 === "string" && typeof obj2 === "string") {
-    if (
-      typeof Object.entries(obj1).values === "string" &&
-      typeof Object.entries(obj2).values === "string"
-    ) {
-      Object.keys(obj1).forEach((key) => {
-        object2[obj1[key]] =
-          Object.values(obj1[key]) + " " + Object.values(obj2[key]);
-      });
-      result = object2;
-    }
-
     result = obj1 + " " + obj2;
-    //check if objects are numbers
-  } else if (typeof obj1 === "number" && typeof obj2 === "number") {
+  } else if (
+    typeof obj1 === "object" &&
+    typeof obj2 === "object" &&
+    typeof Object.entries(obj1)[0][1] === "string" &&
+    typeof Object.entries(obj2)[0][1] === "string"
+  ) {
+    Object.keys(obj1).forEach((key) => {
+      object2[key] = obj1[key] + " " + obj2[key];
+    });
+    result = object2;
+  }
+  //check if objects are numbers
+  else if (typeof obj1 === "number" && typeof obj2 === "number") {
     result = obj1 + obj2;
   }
   //when number objects are nested in objects
@@ -170,7 +171,9 @@ function fusion(obj1, obj2) {
 }
 
 //Tests:
-fusion({ nbr: 12 }, { nbr: 23 });
+
+fusion({ str: "hello" }, { str: "there" });
+//fusion({ nbr: 12 }, { nbr: 23 });
 //fusion({ a: 12, b: 2, c: 43 }, { a: 23, b: 2 });
 // fusion(
 //   { a: { b: [1, 2], c: { d: 2 } } },
