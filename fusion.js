@@ -75,10 +75,18 @@ function fusion(obj1, obj2) {
     typeof Object.entries(obj2)[0][1] === "string"
   ) {
     Object.keys(obj1).forEach((key) => {
-      object2[key] = obj1[key] + " " + obj2[key];
-    });
-    result = object2;
-  }
+    //   object2[key] = obj1[key] + " " + obj2[key];
+    // });
+    // result = object2;
+    if (obj2[key] === undefined) {
+      temp = obj1[key];
+    } else {
+      temp = obj1[key] +" "+ obj2[key];
+    }
+    object2[key] = temp;
+  });
+  result = object2;
+}
   //check if objects are numbers
   else if (typeof obj1 === "number" && typeof obj2 === "number") {
     result = obj1 + obj2;
@@ -172,7 +180,7 @@ function fusion(obj1, obj2) {
 
 //Tests:
 
-fusion({ str: "hello" }, { str: "there" });
+//fusion({ str: "hello" }, { str: "there" });
 //fusion({ nbr: 12 }, { nbr: 23 });
 //fusion({ a: 12, b: 2, c: 43 }, { a: 23, b: 2 });
 // fusion(
@@ -180,7 +188,7 @@ fusion({ str: "hello" }, { str: "there" });
 //   { a: { b: [0, 2, 1], c: { d: 23 } } }
 // );
 //fusion({ a: "str" }, { a: 1 });0
-//fusion({ a: "A", b: "B", c: "C" }, { a: "B", b: "C" });
+fusion({ a: "A", b: "B", c: "C" }, { a: "B", b: "C" });
 //fusion([1, "2"], [2]);
 
 // fusion(
