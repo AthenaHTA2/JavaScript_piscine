@@ -34,6 +34,7 @@ function fusion(obj1, obj2) {
   var arr_1_Item;
   var object2 = {};
   var result;
+  var sum;
   //
 
   if (obj1 === undefined) {
@@ -113,19 +114,42 @@ function fusion(obj1, obj2) {
     typeof Object.entries(obj1)[0][1] === "number" &&
     typeof Object.entries(obj2)[0][1] === "number"
   ) {
+    // console.log("the length of keys for obj1:", Object.keys(obj1).length);
+    // console.log("the length of keys for obj2:", Object.keys(obj1).length);
     Object.keys(obj1).forEach((key) => {
-      let sum = obj1[key] + obj2[key];
-      // console.log(sum);
+      console.log("is Obj1 bigger than Obj2? ", key > Object.keys(obj2).length);
+      if (
+        Object.keys(obj2).length > Object.keys(obj1).length &&
+        key === Object.keys(obj1).length - 1
+      ) {
+        sum = obj2[key];
+      } else if (key > Object.keys(obj2).length - 1) {
+        sum = obj1[key];
+      } else {
+        sum = obj1[key] + obj2[key];
+      }
+
+      console.log(sum);
       // console.log(obj1[key]);
       // console.log(obj2[key]);
-      object2[Object.keys(obj1)] = sum;
+      object2[key] = sum;
     });
     result = object2;
-
-    //   }else{
-
-    //   }
-  } else if (typeof obj1 != typeof obj2) {
+  }
+  //  else if (
+  //   ((typeof obj1 === "object" && typeof obj2 === "object") ||
+  //     (typeof obj1 === "function" && typeof obj2 === "function")) &&
+  //   obj1 !== null &&
+  //   obj2 != null
+  // ) {
+  //   console.log("type of obj1: ",typeof obj1)
+  //   Object.keys(obj1).forEach((key) => {
+  //     let sum = obj1[key] + obj2[key];
+  //     console.log(sum)
+  //     object2[key] = sum;
+  //   });
+  // }
+  else if (typeof obj1 != typeof obj2) {
     //if type of objects is not the same
     result = obj2;
     //return result;
@@ -135,8 +159,8 @@ function fusion(obj1, obj2) {
 }
 
 //Tests:
-fusion({ nbr: 12 }, { nbr: 23 });
-//fusion(({ a: 12, b: 2, c: 43 }, { a: 23, b: 2 }));
+//fusion({ nbr: 12 }, { nbr: 23 });
+fusion({ a: 12, b: 2, c: 43 }, { a: 23, b: 2 });
 // fusion(
 //   { a: { b: [1, 2], c: { d: 2 } } },
 //   { a: { b: [0, 2, 1], c: { d: 23 } } }
