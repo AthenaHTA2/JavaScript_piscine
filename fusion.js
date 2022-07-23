@@ -49,6 +49,7 @@ function fusion(obj1, obj2) {
     //check if objects are arrays
     //merge arrays
     arr_1_Item = obj1[0];
+   
     if (Array.isArray(arr_1_Item)) {
       //are 'obj1' and 'obj2' multi-dimensional arrays?
       for (let i = 0; i < obj2.length; i++) {
@@ -59,25 +60,25 @@ function fusion(obj1, obj2) {
           newArr.push(obj2[i]);
         }
       }
+      result = newArr
     } else {
       obj1.forEach(function (arr_1_Item) {
         newArr = obj1.concat(obj2);
       });
     }
     result = newArr;
-    //check if objects are strings
+    //check if inputs are strings
   } else if (typeof obj1 === "string" && typeof obj2 === "string") {
     result = obj1 + " " + obj2;
+    //check if inputs are objects of strings
   } else if (
     typeof obj1 === "object" &&
     typeof obj2 === "object" &&
     typeof Object.entries(obj1)[0][1] === "string" &&
     typeof Object.entries(obj2)[0][1] === "string"
   ) {
+ 
     Object.keys(obj1).forEach((key) => {
-    //   object2[key] = obj1[key] + " " + obj2[key];
-    // });
-    // result = object2;
     if (obj2[key] === undefined) {
       temp = obj1[key];
     } else {
@@ -87,7 +88,7 @@ function fusion(obj1, obj2) {
   });
   result = object2;
 }
-  //check if objects are numbers
+  //check if inputs are numbers
   else if (typeof obj1 === "number" && typeof obj2 === "number") {
     result = obj1 + obj2;
   }
@@ -119,14 +120,12 @@ function fusion(obj1, obj2) {
   // }
   // data = tempData;
   // result = data.reduce((acc, obj) => (acc = deepMergeSum(acc, obj)));
+  //check if inputs are objects of numbers
   else if (
     typeof Object.entries(obj1)[0][1] === "number" &&
     typeof Object.entries(obj2)[0][1] === "number"
   ) {
-    // console.log("the length of keys for obj1:", Object.keys(obj1).length);
-    // console.log("the length of keys for obj2:", Object.keys(obj1).length);
     Object.keys(obj1).forEach((key) => {
-      //console.log("is Obj1 bigger than Obj2? ", key > Object.keys(obj2).length);
       if (obj2[key] === undefined) {
         sum = obj1[key];
       } else {
@@ -188,8 +187,8 @@ function fusion(obj1, obj2) {
 //   { a: { b: [0, 2, 1], c: { d: 23 } } }
 // );
 //fusion({ a: "str" }, { a: 1 });0
-fusion({ a: "A", b: "B", c: "C" }, { a: "B", b: "C" });
-//fusion([1, "2"], [2]);
+//fusion({ a: "A", b: "B", c: "C" }, { a: "B", b: "C" });
+fusion([1, "2"], [2]);
 
 // fusion(
 //   [[], [1]],
