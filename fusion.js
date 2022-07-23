@@ -118,15 +118,15 @@ function fusion(obj1, obj2) {
     // console.log("the length of keys for obj2:", Object.keys(obj1).length);
     Object.keys(obj1).forEach((key) => {
       console.log("is Obj1 bigger than Obj2? ", key > Object.keys(obj2).length);
-      if (
-        Object.keys(obj2).length > Object.keys(obj1).length &&
-        key === Object.keys(obj1).length - 1
+      if (Object.keys(obj2).length > Object.keys(obj1).length) {
+        sum = obj2[key + 1];
+      } else if (
+        key < Object.keys(obj1).length - 1 &&
+        Object.keys(obj1).length > Object.keys(obj2).length
       ) {
-        sum = obj2[key];
-      } else if (key > Object.keys(obj2).length - 1) {
-        sum = obj1[key];
-      } else {
         sum = obj1[key] + obj2[key];
+      } else {
+        sum = obj1[key];
       }
 
       console.log(sum);
