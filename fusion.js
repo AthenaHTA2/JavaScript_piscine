@@ -105,9 +105,12 @@ function fusion(obj1, obj2) {
       if (obj2[key] === undefined) {
         temp = obj1[key];
       } else {
-        temp = obj1[key] + obj2[key];
+        temp = obj1[key]
+        newArr.push(temp);
+        newArr.push(obj2[key][0])
+        console.log(temp)
       }
-      object2[key] = temp;
+      object2[key] = newArr
     });
     result = object2;
   }
