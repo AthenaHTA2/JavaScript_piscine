@@ -117,21 +117,32 @@ function fusion(obj1, obj2) {
     // console.log("the length of keys for obj1:", Object.keys(obj1).length);
     // console.log("the length of keys for obj2:", Object.keys(obj1).length);
     Object.keys(obj1).forEach((key) => {
-      console.log("is Obj1 bigger than Obj2? ", key > Object.keys(obj2).length);
-      if (Object.keys(obj2).length > Object.keys(obj1).length) {
-        sum = obj2[key + 1];
-      } else if (
-        key < Object.keys(obj1).length - 1 &&
-        Object.keys(obj1).length > Object.keys(obj2).length
-      ) {
-        sum = obj1[key] + obj2[key];
-      } else {
+      //console.log("is Obj1 bigger than Obj2? ", key > Object.keys(obj2).length);
+      if (obj2[key] === undefined) {
         sum = obj1[key];
+      } else {
+        sum = obj1[key] + obj2[key];
       }
 
-      console.log(sum);
-      // console.log(obj1[key]);
-      // console.log(obj2[key]);
+      // if (Object.keys(obj2).length > Object.keys(obj1).length) {
+      //   sum = obj2[key + 1];
+      // } else if (
+      //   key < Object.keys(obj2).length &&
+      //   Object.keys(obj1).length > Object.keys(obj2).length
+      // ) {
+      //   sum = obj1[key] + obj2[key];
+      // } else if (
+      //   Object.keys(obj1).length - 1 ===
+      //   Object.keys(obj2).length - 1
+      // ) {
+      //   sum = obj1[key] + obj2[key];
+      // } else if(key > Object.keys(obj2).length-1) {
+      //   sum = obj1[key];
+      // }
+
+      // console.log(sum);
+      // // console.log(obj1[key]);
+      // // console.log(obj2[key]);
       object2[key] = sum;
     });
     result = object2;
@@ -159,8 +170,8 @@ function fusion(obj1, obj2) {
 }
 
 //Tests:
-//fusion({ nbr: 12 }, { nbr: 23 });
-fusion({ a: 12, b: 2, c: 43 }, { a: 23, b: 2 });
+fusion({ nbr: 12 }, { nbr: 23 });
+//fusion({ a: 12, b: 2, c: 43 }, { a: 23, b: 2 });
 // fusion(
 //   { a: { b: [1, 2], c: { d: 2 } } },
 //   { a: { b: [0, 2, 1], c: { d: 23 } } }
