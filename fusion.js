@@ -25,7 +25,6 @@ is then passed as the acc for the next iteration, until the last element.
 */
 
 function fusion(obj1, obj2) {
-
   var item1;
   var item2;
   var newArr = [];
@@ -36,7 +35,6 @@ function fusion(obj1, obj2) {
   var object2 = {};
   var result;
   var sum;
-  //
 
   if (obj1 === undefined) {
     return obj2;
@@ -45,13 +43,11 @@ function fusion(obj1, obj2) {
   if (obj2 === undefined) {
     return obj1;
   }
+  //check if objects are arrays
   if (Array.isArray(obj1) && Array.isArray(obj2)) {
-    //check if objects are arrays
-    //merge arrays
+    //are 'obj1' and 'obj2' multi-dimensional arrays?
     arr_1_Item = obj1[0];
-   
     if (Array.isArray(arr_1_Item)) {
-      //are 'obj1' and 'obj2' multi-dimensional arrays?
       for (let i = 0; i < obj2.length; i++) {
         if (i < obj1.length) {
           temp = obj1[i].concat(obj2[i]);
@@ -59,14 +55,18 @@ function fusion(obj1, obj2) {
         } else {
           newArr.push(obj2[i]);
         }
+        result = newArr
       }
-      result = newArr
+      result = newArr;
     } else {
       obj1.forEach(function (arr_1_Item) {
         newArr = obj1.concat(obj2);
+        result = newArr
       });
+      result = newArr;
     }
     result = newArr;
+
     //check if inputs are strings
   } else if (typeof obj1 === "string" && typeof obj2 === "string") {
     result = obj1 + " " + obj2;
@@ -77,51 +77,20 @@ function fusion(obj1, obj2) {
     typeof Object.entries(obj1)[0][1] === "string" &&
     typeof Object.entries(obj2)[0][1] === "string"
   ) {
- 
     Object.keys(obj1).forEach((key) => {
-    if (obj2[key] === undefined) {
-      temp = obj1[key];
-    } else {
-      temp = obj1[key] +" "+ obj2[key];
-    }
-    object2[key] = temp;
-  });
-  result = object2;
-}
+      if (obj2[key] === undefined) {
+        temp = obj1[key];
+      } else {
+        temp = obj1[key] + " " + obj2[key];
+      }
+      object2[key] = temp;
+    });
+    result = object2;
+  }
   //check if inputs are numbers
   else if (typeof obj1 === "number" && typeof obj2 === "number") {
     result = obj1 + obj2;
-  }
-  //when number objects are nested in objects
-  //from: https://stackoverflow.com/questions/42488048/how-can-i-sum-properties-from-two-objects
-  //..but I couldn't get it to work  :-(
-  // const deepMergeSum = (obj1, obj2) => {
-  //   return Object.keys(obj1).reduce((acc, key) => {
-  //     if (typeof obj2[key] === "object") {
-  //       acc[key] = deepMergeSum(obj1[key], obj2[key]);
-  //     } else if (obj2.hasOwnProperty(key) && !isNaN(parseFloat(obj2[key]))) {
-  //       acc[key] = obj1[key] + obj2[key];
-  //     }
-  //     return acc;
-  //   }, {});
-  // };
-  //creating a single object from 'obj1' and 'obj2'
-  //from: https://stackoverflow.com/questions/8925820/javascript-object-push-function
-  //again, I couldn't get it to work..
-  // var data = [];
-  // ...
-  // ...
-  // var tempData = Object.entries(obj1).concat(Object.entries(obj2));
-  // console.log(tempData);
-  // for (var index = 0; index < obj2.length; index++) {
-  //   if (obj2[index].Status == "Valid") {
-  //     tempData.push(obj2);
-  //   }
-  // }
-  // data = tempData;
-  // result = data.reduce((acc, obj) => (acc = deepMergeSum(acc, obj)));
-  //check if inputs are objects of numbers
-  else if (
+  } else if (
     typeof Object.entries(obj1)[0][1] === "number" &&
     typeof Object.entries(obj2)[0][1] === "number"
   ) {
@@ -131,47 +100,12 @@ function fusion(obj1, obj2) {
       } else {
         sum = obj1[key] + obj2[key];
       }
-
-      // if (Object.keys(obj2).length > Object.keys(obj1).length) {
-      //   sum = obj2[key + 1];
-      // } else if (
-      //   key < Object.keys(obj2).length &&
-      //   Object.keys(obj1).length > Object.keys(obj2).length
-      // ) {
-      //   sum = obj1[key] + obj2[key];
-      // } else if (
-      //   Object.keys(obj1).length - 1 ===
-      //   Object.keys(obj2).length - 1
-      // ) {
-      //   sum = obj1[key] + obj2[key];
-      // } else if(key > Object.keys(obj2).length-1) {
-      //   sum = obj1[key];
-      // }
-
-      // console.log(sum);
-      // // console.log(obj1[key]);
-      // // console.log(obj2[key]);
       object2[key] = sum;
     });
     result = object2;
-  }
-  //  else if (
-  //   ((typeof obj1 === "object" && typeof obj2 === "object") ||
-  //     (typeof obj1 === "function" && typeof obj2 === "function")) &&
-  //   obj1 !== null &&
-  //   obj2 != null
-  // ) {
-  //   console.log("type of obj1: ",typeof obj1)
-  //   Object.keys(obj1).forEach((key) => {
-  //     let sum = obj1[key] + obj2[key];
-  //     console.log(sum)
-  //     object2[key] = sum;
-  //   });
-  // }
-  else if (typeof obj1 != typeof obj2) {
+  } else if (typeof obj1 != typeof obj2) {
     //if type of objects is not the same
     result = obj2;
-    //return result;
   }
   console.log(result);
   return result;
@@ -188,15 +122,14 @@ function fusion(obj1, obj2) {
 // );
 //fusion({ a: "str" }, { a: 1 });0
 //fusion({ a: "A", b: "B", c: "C" }, { a: "B", b: "C" });
-fusion([1, "2"], [2]);
-
-// fusion(
+//fusion([1, "2"], [2]);
+//  fusion(
 //   [[], [1]],
 //   [
 //     [12, 3],
 //     [2, 3],
 //     ["2", "1"],
-//   ]
+//   ])
 
 //Luis wonderful solution:
 //   const fusion = (f, s) => {
@@ -247,3 +180,35 @@ fusion([1, "2"], [2]);
 
 //     return reslt;
 //}
+
+//Thinkering to find a solution:
+
+//when number objects are nested in objects
+//from: https://stackoverflow.com/questions/42488048/how-can-i-sum-properties-from-two-objects
+//..but I couldn't get it to work  :-(
+// const deepMergeSum = (obj1, obj2) => {
+//   return Object.keys(obj1).reduce((acc, key) => {
+//     if (typeof obj2[key] === "object") {
+//       acc[key] = deepMergeSum(obj1[key], obj2[key]);
+//     } else if (obj2.hasOwnProperty(key) && !isNaN(parseFloat(obj2[key]))) {
+//       acc[key] = obj1[key] + obj2[key];
+//     }
+//     return acc;
+//   }, {});
+// };
+//creating a single object from 'obj1' and 'obj2'
+//from: https://stackoverflow.com/questions/8925820/javascript-object-push-function
+//again, I couldn't get it to work..
+// var data = [];
+// ...
+// ...
+// var tempData = Object.entries(obj1).concat(Object.entries(obj2));
+// console.log(tempData);
+// for (var index = 0; index < obj2.length; index++) {
+//   if (obj2[index].Status == "Valid") {
+//     tempData.push(obj2);
+//   }
+// }
+// data = tempData;
+// result = data.reduce((acc, obj) => (acc = deepMergeSum(acc, obj)));
+//check if inputs are objects of numbers
