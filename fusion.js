@@ -24,119 +24,113 @@ the accumulator, or acc , and the current value . The return of this function
 is then passed as the acc for the next iteration, until the last element.
 */
 
-function fusion(obj1, obj2) {
+//This is my solution that however fails audit test #8: fusion({ arr: [1, '2'] }, { arr: [2] }).arr, [1, '2', 2])
+// function fusion(obj1, obj2) {
+//   var item1;
+//   var item2;
+//   var newArr = [];
+//   var position;
+//   var temp;
+//   var count = 0;
+//   var arr_1_Item;
+//   var object2 = {};
+//   var result;
+//   var sum;
 
-  var item1;
-  var item2;
-  var newArr = [];
-  var position;
-  var temp;
-  var count = 0;
-  var arr_1_Item;
-  var object2 = {};
-  var result;
-  var sum;
+//   if (obj1 === undefined) {
+//     return obj2;
+//   }
 
-  if (obj1 === undefined) {
-    return obj2;
-  }
+//   if (obj2 === undefined) {
+//     return obj1;
+//   }
+//   //check if objects are arrays
+//   if (Array.isArray(obj1) && Array.isArray(obj2)) {
+//     //are 'obj1' and 'obj2' multi-dimensional arrays?
+//     arr_1_Item = obj1[0];
+//     if (Array.isArray(arr_1_Item)) {
+//       for (let i = 0; i < obj2.length; i++) {
+//         if (i < obj1.length) {
+//           temp = obj1[i].concat(obj2[i]);
+//           newArr.push(temp);
+//         } else {
+//           newArr.push(obj2[i]);
+//         }
+//         result = newArr;
+//       }
+//       result = newArr;
+//     } else {
+//       obj1.forEach(function (arr_1_Item) {
+//         newArr = obj1.concat(obj2);
 
-  if (obj2 === undefined) {
-    return obj1;
-  }
-  //check if objects are arrays
+//         result = newArr;
+//       });
+//       result = newArr;
+//     }
 
-  if (Array.isArray(obj1) && Array.isArray(obj2)) {
-    //are 'obj1' and 'obj2' multi-dimensional arrays?
-    arr_1_Item = obj1[0];
-    if (Array.isArray(arr_1_Item)) {
-      for (let i = 0; i < obj2.length; i++) {
-        if (i < obj1.length) {
-          temp = obj1[i].concat(obj2[i]);
-          newArr.push(temp);
-        } else {
-          newArr.push(obj2[i]);
-        }
-        result = newArr
-      }
-      result = newArr;
-  
-    } else {
-      obj1.forEach(function (arr_1_Item) {
-        newArr = obj1.concat(obj2);
-   
-        result = newArr
+//     result = newArr;
 
-      });
-      result = newArr;
-    }
-
-    result = newArr;
-
-    //check if inputs are strings
-  } else if (typeof obj1 === "string" && typeof obj2 === "string") {
-    result = obj1 + " " + obj2;
-    //check if inputs are objects of strings
-  } else if (
-    typeof obj1 === "object" &&
-    typeof obj2 === "object" &&
-    typeof Object.entries(obj1)[0][1] === "string" &&
-    typeof Object.entries(obj2)[0][1] === "string"
-  ) {
-    Object.keys(obj1).forEach((key) => {
-      if (obj2[key] === undefined) {
-        temp = obj1[key];
-      } else {
-        temp = obj1[key] + " " + obj2[key];
-      }
-      object2[key] = temp;
-    });
-    result = object2;
-  }
-  
-  else if (
-    typeof obj1 === "object" &&
-    typeof obj2 === "object" &&
-    typeof Object.entries(obj1)[0][1] === "object" &&
-    typeof Object.entries(obj2)[0][1] === "object"
-  ) {
-
-    Object.keys(obj1).forEach((key) => {
-      if (obj2[key] === undefined) {
-        temp = obj1[key];
-      } else {
-        temp = obj1[key]
-        newArr.push(temp);
-        newArr.push(obj2[key][0])
-        console.log(temp)
-      }
-      object2[key] = newArr
-    });
-    result = object2;
-  }
-  //check if inputs are numbers
-  else if (typeof obj1 === "number" && typeof obj2 === "number") {
-    result = obj1 + obj2;
-  } else if (
-    typeof Object.entries(obj1)[0][1] === "number" &&
-    typeof Object.entries(obj2)[0][1] === "number"
-  ) {
-    Object.keys(obj1).forEach((key) => {
-      if (obj2[key] === undefined) {
-        sum = obj1[key];
-      } else {
-        sum = obj1[key] + obj2[key];
-      }
-      object2[key] = sum;
-    });
-    result = object2;
-  } else if (typeof obj1 != typeof obj2) {
-    //if type of objects is not the same
-    result = obj2;
-  }
-  console.log(result);
-  return result;
-}
+//     //check if inputs are strings
+//   } else if (typeof obj1 === "string" && typeof obj2 === "string") {
+//     result = obj1 + " " + obj2;
+//     //check if inputs are objects of strings
+//   } else if (
+//     typeof obj1 === "object" &&
+//     typeof obj2 === "object" &&
+//     typeof Object.entries(obj1)[0][1] === "string" &&
+//     typeof Object.entries(obj2)[0][1] === "string"
+//   ) {
+//     Object.keys(obj1).forEach((key) => {
+//       if (obj2[key] === undefined) {
+//         temp = obj1[key];
+//       } else {
+//         temp = obj1[key] + " " + obj2[key];
+//       }
+//       object2[key] = temp;
+//     });
+//     result = object2;
+//   } else if (
+//     typeof obj1 === "object" &&
+//     typeof obj2 === "object" &&
+//     typeof Object.entries(obj1)[0][1] === "object" &&
+//     typeof Object.entries(obj2)[0][1] === "object"
+//   ) {
+//     Object.keys(obj1).forEach((key) => {
+//       if (obj2[key] === undefined) {
+//         temp = obj1[key];
+//       } else {
+//         temp = obj1[key];
+//         newArr.push(temp);
+//         newArr.push(obj2[key][0]);
+//         console.log(temp);
+//       }
+//       object2[key] = newArr;
+//     });
+//     result = object2;
+//   }
+//   //check if inputs are numbers
+//   else if (typeof obj1 === "number" && typeof obj2 === "number") {
+//     result = obj1 + obj2;
+//   } else if (
+//     typeof Object.entries(obj1)[0][1] === "number" &&
+//     typeof Object.entries(obj2)[0][1] === "number"
+//   ) {
+//     Object.keys(obj1).forEach((key) => {
+//       if (obj2[key] === undefined) {
+//         sum = obj1[key];
+//       } else {
+//         sum = obj1[key] + obj2[key];
+//       }
+//       object2[key] = sum;
+//     });
+//     result = object2;
+//   } else if (typeof obj1 != typeof obj2) {
+//     //if type of objects is not the same
+//     result = obj2;
+//   }
+//   console.log(result);
+//   return result;
+// }
 
 //Tests:
 
@@ -149,65 +143,48 @@ function fusion(obj1, obj2) {
 //  );
 //fusion({ a: "str" }, { a: 1 });0
 //fusion({ a: "A", b: "B", c: "C" }, { a: "B", b: "C" });
-fusion({ arr: [1, '2'] }, { arr: [2] })
-//  fusion(
-//   [[], [1]],
-//   [
-//     [12, 3],
-//     [2, 3],
-//     ["2", "1"],
-//   ])
-
+//fusion({ arr: [1, "2"] }, { arr: [2] });
+//
+//
 //Luis wonderful solution:
-//   const fusion = (f, s) => {
-//     if (Array.isArray(f) && Array.isArray(s)) {
-//         return f.concat(s);
-//     }
+const fusion = (f, s) => {
+  if (Array.isArray(f) && Array.isArray(s)) {
+    return f.concat(s);
+  }
+  if (typeof f === "string" && typeof s === "string") {
+    return f + " " + s;
+  }
+  if (typeof f === "number" && typeof s === "number") {
+    return f + s;
+  }
+  if (f === undefined) {
+    return s;
+  }
+  if (s === undefined) {
+    return f;
+  }
+  if (typeof f != typeof s) {
+    return s;
+  }
+  if (f instanceof RegExp && s instanceof RegExp) {
+    return s;
+  }
+  if (f instanceof Set && s instanceof Set) {
+    return s;
+  }
+  let reslt = {};
 
-//     if (typeof f === "string" && typeof s === "string") {
-//         return f + " " + s;
-//     }
+  let keys = Object.keys(f).concat(Object.keys(s));
 
-//     if (typeof f === "number" && typeof s === "number") {
-//         return f + s;
-//     }
+  keys.filter((key, i) => keys.indexOf(key) === i);
 
-//     if (f === undefined) {
-//         return s;
-//     }
+  keys.forEach((key) => {
+    reslt[key] = fusion(f[key], s[key]);
+  });
+  return reslt;
+};
 
-//     if (s === undefined) {
-//         return f;
-//     }
-
-//     if (typeof f != typeof s) {
-//         return s;
-//     }
-
-//     if (f instanceof RegExp && s instanceof RegExp) {
-//         return s;
-//     }
-//   //A set is a collection of items which are unique i.e no element can be repeated
-//   //in other words if keys from object 'f' are different from keys in object 's'.
-//     if (f instanceof Set && s instanceof Set) {
-//         return s;
-//     }
-
-//     let reslt = {};
-//   //step 1: join keys from f and s and turn them into an array
-//     let keys = Object.keys(f).concat(Object.keys(s));
-//     console.log("the concatenated keys: ", keys)
-//     //filter the 'keys' array for first occurrence of each key.
-//     //This gives an array of unique keys
-//     keys.filter((key, i) => keys.indexOf(key) === i);
-//   //using recursion to merge object 'f' and 's'
-//     keys.forEach((key) => {
-//         reslt[key] = fusion(f[key], s[key]);
-//     });
-
-//     return reslt;
-//}
-
+//
 //Thinkering to find a solution:
 
 //when number objects are nested in objects
