@@ -41,12 +41,11 @@ let ctxStates = [
 ];
 
 function citiesOnly(arrCities) {
-  var cities = arrCities.map(function (city) {
-    for (let i = 0; i < arrCities.length; i++) {
-      console.log(arrCities[i].city);
-    }
-  });
-
+  var cities = arrCities.map((x) => (x = arrCities.city));
+  //   var cities = arrCities.map(function (city) {
+  //     for (let i = 0; i < arrCities.length; i++) {
+  //       console.log(arrCities[i].city);
+  // }
   return cities;
 }
 
