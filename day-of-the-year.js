@@ -28,7 +28,7 @@ function dayOfTheYear( date){
     return Math.ceil(diff/day +1)
 }
 
-dayOfTheYear('2020-06-22')
+//dayOfTheYear('2020-06-22')
 
 //Audit tests:
 //export const tests = []
