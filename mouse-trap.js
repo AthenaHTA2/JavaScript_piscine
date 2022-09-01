@@ -1,74 +1,63 @@
-let centerBox;
-let newCircle;
+let circle;
+let box;
 
 export function createCircle() {
-  document.addEventListener("click", function (e) {
-    //get coordinates of click event
-    let clickX = e.clientX;
-    let clickY = e.clientY;
-    //make a circle on each click
-    let c = document.createElement("div");
-    c.classList.add("circle");
-    c.style.background = "white";
-    //assign click event coordinates to circle
-    c.style.left = clickX - 25 + "px"; //subtracting 25px because circle diameter is 50px
-    c.style.top = clickY - 25 + "px";
-    c.style.right = clickX + 25 + "px";
-    c.style.bottom = clickY + 25 + "px";
-    newCircle = c;
-    document.body.appendChild(newCircle);
-  });
+  document.addEventListener(
+    "click",
+    (event) => {
+      let x = document.createElement("div");
+      x.classList.add("circle");
+      x.style.background = "white";
+      x.style.left = event.clientX - 25 + "px";
+      x.style.top = event.clientY - 25 + "px";
+      x.classList.add("following");
+      circle = x;
+      document.body.appendChild(circle);
+    },
+    false
+  );
 }
 
 export function moveCircle() {
   addEventListener("mousemove", (event) => {
-    let boxData = centerBox.getBoundingClientRect();
-    let cirData = newCircle.getBoundingClientRect();
-    if (newCircle.style.background === "var(--purple)") {
-      //if circle is inside of the box
-      if (event.clientX < boxData.left) {
-        newCircle.style.left = boxData.left + 1 + "px"; //1 + 25px radius
+    const brE = circle.getBoundingClientRect();
+    const brC = box.getBoundingClientRect();
+    if (circle.style.background === "var(--purple)") {
+      if (event.clientX < brC.left + 1) {
+        circle.style.left = brC.left + 1 + "px";
       } else {
-        newCircle.style.left = event.clientX - 25 + "px";
+        circle.style.left = event.clientX - 25 + "px";
       }
-      if (event.clientX > boxData.right) {
-        newCircle.style.left = boxData.right - 51 + "px"; //1 + 50px diameter
+
+      if (event.clientY < brC.top + 1) {
+        circle.style.top = brC.top + 1 + "px";
       } else {
-        newCircle.style.right = event.clientX + 25 + "px"; //25 - 1
+        circle.style.top = event.clientY - 25 + "px";
       }
-      if (event.clientY < boxData.top) {
-        newCircle.style.top = boxData.top + 1 + "px";
-      } else {
-        newCircle.style.top = event.clientY - 25 + "px";
+      if (event.clientY + 25 > brC.bottom - 1) {
+        circle.style.top = brC.bottom - 1 - 50 + "px";
       }
-      if (event.clientY > boxData.bottom) {
-        newCircle.style.top = boxData.bottom - 49 + "px"; // -1 + 50px diameter
-      } else {
-        newCircle.style.bottom = event.clientY + 25 + "px";
+      if (event.clientX + 25 > brC.right - 1) {
+        circle.style.left = brC.right - 1 - 50 + "px";
       }
     } else {
-      //if circle is outside of the box
-      newCircle.style.left = event.clientX - 25 + "px";
-      newCircle.style.top = event.clientY - 25 + "px";
-      newCircle.style.right = event.clientX + 25 + "px";
-      newCircle.style.bottom = event.clientY + 25 + "px";
+      circle.style.left = event.clientX - 25 + "px";
+      circle.style.top = event.clientY - 25 + "px";
     }
     if (
-      cirData.left >= boxData.left &&
-      cirData.top >= boxData.top &&
-      cirData.right <= boxData.right &&
-      cirData.bottom <= boxData.bottom
+      brE.left >= brC.left &&
+      brE.top >= brC.top &&
+      brE.bottom <= brC.bottom &&
+      brE.right <= brC.right
     ) {
-      newCircle.style.background = "var(--purple)";
+      circle.style.background = "var(--purple)";
     }
   });
 }
 
 export function setBox() {
-  let b = document.createElement("div");
-  document.querySelector("b");
-  b.classList.add("box");
-  b.style.backgroundColor = "green";
-  centerBox = b;
-  document.body.appendChild(centerBox);
+  let x = document.createElement("div");
+  x.classList.add("box");
+  box = x;
+  document.body.appendChild(box);
 }
