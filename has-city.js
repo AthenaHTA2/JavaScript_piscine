@@ -9,9 +9,9 @@ If it does, it should return the string <city> is a city from <country>, otherwi
 function hasCity(country, cities = []) {
   return function (city) {
     if (cities.includes(city)) {
-      return `${city}` + "is a city from" + `${country}`;
+      return `${city}` + " is a city from " + `${country}`;
     } else {
-      return `${city}` + "is not a city from" + `${country}`;
+      return `${city}` + " is not a city from " + `${country}`;
     }
   };
 }
