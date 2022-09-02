@@ -66,17 +66,54 @@ finishTheJob(30)
 //   };
 // };
 
-function mult2(x){
-  return function(y){
-    return x*y
-  }
+function mult2(x) {
+  return function (y) {
+    return x * y;
+  };
 }
 
+function add3(x) {
+  return function (y) {
+    return function (z) {
+      return x + y + z;
+    };
+  };
+}
 
-let add3 = x => y => y ? add3(x + y) : x
+function sub4(x) {
+  return function (y) {
+    return function (z) {
+      return function (w) {
+        return x - y - z - w;
+      };
+    };
+  };
+}
 
-let sub4 = x => y => y ? sub4(x - y) : x
+//This is the generic code for n steps.
+//The function needs to be called like thus: console.log(add3(1)(2)(3)()),
+//instead of: console.log(add3(1)(2)(3))
+// let add3 = x => y => y ? add3(x + y) : x
+// let sub4 = x => y => y ? sub4(x - y) : x
 
-console.log(add3(1)(2)(3)())
+console.log(add3(1)(2)(3));
 //console.log(mult2(2)(4))
 //console.log(sub4(10)(2)(3)(1)())
+
+//Tests
+// export const tests = []
+// const t = (f) => tests.push(f)
+// t(() => mult2.length === 1)
+// t(() => add3.length === 1)
+// t(() => sub4.length === 1)
+// t(({ eq }) => eq(mult2(2)(5), 10))
+// t(({ eq }) => eq(mult2(3)(6), 18))
+// t(({ eq }) => eq(mult2(4)(7), 28))
+// t(({ eq }) => eq(add3(1)(2)(3), 6))
+// t(({ eq }) => eq(add3(4)(5)(11), 20))
+// t(({ eq }) => eq(add3(4)(7)(10), 21))
+// t(({ eq }) => eq(sub4(4)(7)(10)(30), -43))
+// t(({ eq }) => eq(sub4(5)(17)(-10)(3), -5))
+// t(({ eq }) => eq(sub4(3)(72)(-211)(99), 43))
+// t(({ eq }) => eq(sub4(5)(7)(10)(26), -38))
+// Object.freeze(tests)
