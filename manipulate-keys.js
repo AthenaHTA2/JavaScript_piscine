@@ -11,25 +11,26 @@ console.log(mapValues(nutrients, (v) => v+1))
 console.log(reduceValues(nutrients, (acc, cr) => acc + cr))
 // output: 37
 */
-function filterValues(obj, func) {
+
+function filterKeys(obj, func) {
   let reslt = {};
   for (let [key, value] of Object.entries(obj)) {
-    if (func(value)) {
+    if (func(key)) {
       reslt[key] = value;
     }
   }
   return reslt;
 }
-function mapValues(obj, func) {
+function mapKeys(obj, func) {
   let reslt = {};
   for (let [key, value] of Object.entries(obj)) {
-    reslt[key] = func(value);
+    reslt[func(key)] = value;
   }
   return reslt;
 }
-function reduceValues(obj, func, ac) {
+function reduceKeys(obj, func, ac) {
   if (ac == undefined) {
-    return Object.values(obj).reduce(func);
+    return Object.keys(obj).reduce(func);
   }
-  return Object.values(obj).concat(ac).reduce(func);
+  return [ac].concat(Object.keys(obj)).reduce(func);
 }
