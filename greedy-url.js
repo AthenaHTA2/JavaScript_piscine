@@ -1,7 +1,4 @@
-Raw;
-Permalink;
-Blame;
-History;
+
 /*
 Create 3 functions, which accept a string which we'll refer to as the dataSet. Your function should return an array of strings.
  getURL: returns all URLs present in the dataSet.
